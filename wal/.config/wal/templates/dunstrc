@@ -13,7 +13,7 @@
     shrink = no
 
     # Height of separator between notifications
-    separator_height = 2
+    separator_height = 0
 
     # Add vertical padding to the inside of the notification
     # same size as polybar blocks

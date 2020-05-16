@@ -6,3 +6,4 @@ remind lannhu about getmypayment address
 get bluetooth module to work in polybar
 caprine rice?
 re:zero ovas
+update dotfiles README
