@@ -1,0 +1,710 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[color]
+
+background = ${xrdb:color0:#222}
+color1 = ${xrdb:color2}
+color2 = ${xrdb:color4}
+color3 = ${xrdb:color6}
+
+white = #FFFFFF
+black = #000000
+red = #EC7875
+pink = #EC407A
+purple = #BA68C8
+blue = #42A5F5
+cyan = #4DD0E1
+teal = #00B19F
+green = #61C766
+lime = #B9C244
+yellow = #FDD835
+amber = #FBC02D
+orange = #E57C46
+brown = #AC8476
+grey = #8C8C8C
+indigo = #6C77BB
+blue-gray = #6D8895
+
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
+
+[bar/base]
+font-0=SF Mono:size=11:antialias=true;3
+font-1=FontAwesome5Free:style=Regular:size=9:antialias=true;3
+font-2=FontAwesome5Free:style=Solid:size=9:antialias=true;3
+font-3=IPAGothic:style=Regular:size=11:antialias=true;3
+font-4=FontAwesome5Pro:style=Regular=size=9:antialias=true;3
+;font-4 = "waffle:size=11;4"
+
+
+height = 45
+;radius = 20
+;Works very well with a ;radius like this! Put it on every bar.
+
+background = ${color.background}
+override-redirect=true
+offset-y = 10
+
+wm-restack = bspwm
+
+border-size = 0
+border-color = ${color.white}
+
+[bar/bspwm]
+inherit = bar/base
+width = 35%
+
+foreground = ${color.color1}
+
+offset-x = 10
+
+; wsnumber
+modules-left = bspwm xwindow
+
+; display app icons 
+tray-position = right
+
+
+[bar/music]
+inherit = bar/base
+enable-ipc = true
+width = 28%
+
+foreground = ${color.color2}
+offset-x = 55.5%
+
+; Spotify (script at github.com/dietervanhoof/polybar-spotify-controls)
+;modules-left = previous playpause next spotify
+; Mpd
+modules-left = mpd
+
+[bar/misc]
+inherit = bar/base
+width = 17.9%
+offset-x = 65%
+modules-left = backlight alsa network
+
+[bar/tray]
+inherit = bar/base
+width = 14.8%
+
+padding-right = 0
+; 84%
+offset-x = 84.8%
+
+# pulseaudio
+modules-left = battery time power
+
+;                      _       _           
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+                                         
+[module/wsnumber]
+type = custom/script
+exec = ~/.config/polybar/themes/blocks/get_workspace
+tail = true
+interval = 0
+format = "<label>  "
+format-padding = 0
+format-foreground = ${color.background}
+format-background = ${color.color1}
+scroll-up = i3 workspace next
+scroll-down = i3 workspace prev
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+label-foreground = ${color.color1} 
+label-background = ${color.background} 
+label-padding = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-padding = 1
+format-background = ${color.color1}
+format-foreground = ${color.background}
+index-sort = true
+wrapping-scroll = false
+
+enable-click = true
+reverse-scroll = false
+
+label-focused = 
+label-focused-font = 3
+label-focused-foreground = ${color.background}
+label-focused-padding = 1
+
+label-unfocused = 
+label-unfocused-font = 2
+label-unfocused-padding = 1
+label-unfocused-foreground = ${color.background}
+
+label-urgent = 
+label-urgent-font = 1
+label-urgent-padding = 1
+label-urgent-foreground = ${color.background}
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state>
+format-padding = 5
+format-background = ${color.color1}
+format-foreground = ${color.background}
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+label-focused = 
+label-focused-font = 3
+label-focused-foreground = ${color.background}
+label-focused-padding = 1
+
+label-empty = 
+label-empty-font = 2
+label-empty-foreground = ${color.background}
+label-empty-padding = 1
+
+label-occupied = 
+label-occupied-font = 2
+label-occupied-padding = 1
+label-occupied-foreground = ${color.background}
+
+label-urgent = 
+label-urgent-font = 1
+label-urgent-padding = 1
+label-urgent-foreground = ${color.background}
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+
+[module/power]
+type = custom/text
+content = 
+content-foreground = ${color.color3}
+click-left = clearine
+;content padding = 4
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+format-online =  <icon-prev> <toggle> <icon-next>  <label-song><label-time>
+format-online-padding = 2
+format-online-background = ${color.color2}
+format-online-foreground = ${color.background}
+label-song-foreground = ${color.color2}
+label-song-background = ${color.background}
+label-song-padding = 2
+label-time-foreground = ${color.color2}
+label-time-background = ${color.background}
+label-time-padding = 1
+
+format-offline = <label-offline>
+label-offline =  offline
+format-offline-padding = 2
+format-offline-foreground = ${color.color2}
+format-offline-background = ${color.background}
+
+bar-progress-width = 35
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 38
+label-song-ellipsis = true
+
+[module/time]
+type = internal/date
+interval = 10
+format-margin = 2
+
+time = "%I:%M %p"
+date = "%d %b"
+
+label = %date%, %time%
+label-padding-right = 11
+label-foreground = ${color.color3}
+label-background = ${color.background}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-padding = 2
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3:3%%
+format-volume-background = ${color.color3}
+format-volume-foreground = ${color.background}
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+
+label-muted = "    "   
+label-muted-background = ${color.background}
+label-muted-foreground = ${color.color3}
+label-muted-padding = 2
+
+;Spotify modules
+
+[module/previous]
+type = custom/script
+format-font = 3
+format-padding = 2
+format-background = ${color.color2}
+format-foreground = ${color.background}
+exec = echo "  "
+exec-if = "pgrep spotify"
+click-left = "playerctl previous"
+
+
+[module/next]
+type = custom/script
+format-font = 3
+format-padding = 2
+format-background = ${color.color2}
+format-foreground = ${color.background}
+exec = echo "  "
+exec-if = "pgrep spotify"
+click-left = "playerctl next"
+
+[module/playpause]
+type = custom/script
+exec = spotifystatus
+exec-if = "pgrep spotify"
+format-font = 3
+format-background = ${color.color2}
+format-foreground = ${color.background}
+format-padding = 1
+tail = true
+interval = 0
+click-left = "playerctl -p spotify play-pause"
+
+
+[module/spotify]
+type = custom/script
+exec = playerctl -p spotify metadata --format '{{artist}}: {{title}}'
+exec-if = "pgrep spotify"
+format-padding = 2
+tail = true
+interval = 1
+
+[module/alsa]
+type = internal/alsa
+
+; Soundcard to be used
+; Usually in the format hw:# where # is the card number
+; You can find the different card numbers in `/proc/asound/cards`
+;;master-soundcard = default
+;;speaker-soundcard = default
+;;headphone-soundcard = default
+
+; Name of the master, speaker and headphone mixers
+; Use the following command to list available mixer controls:
+; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
+; If master, speaker or headphone-soundcard isn't the default, 
+; use `amixer -c # scontrols` instead where # is the number 
+; of the master, speaker or headphone soundcard respectively
+;
+; Default: Master
+;;master-mixer = Master
+
+; Optionally define speaker and headphone mixers
+; Default: none
+;;speaker-mixer = Speaker
+; Default: none
+;;headphone-mixer = Headphone
+
+; NOTE: This is required if headphone_mixer is defined
+; Use the following command to list available device controls
+; $ amixer controls | sed -r "/CARD/\!d; s/.*=([0-9]+).*name='([^']+)'.*/printf '%3.0f: %s\n' '\1' '\2'/e" | sort
+; You may also need to use `amixer -c # controls` as above for the mixer names
+; Default: none
+;;headphone-id = 9
+
+; Use volume mapping (similar to amixer -M and alsamixer), where the increase in volume is linear to the ear
+; Default: false
+;;mapped = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+;;interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${color.color2}
+format-volume-padding = 2
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+label-volume = %percentage%%
+label-volume-foreground = ${color.background}
+label-volume-padding-left = 1
+
+; Available tokens:
+;   %percentage% (default
+format-muted-prefix =   
+format-muted-prefix-background = ${xrdb:color4}
+format-muted-prefix-foreground = ${color.background}
+format-muted-prefix-padding-left = 2
+format-muted-prefix-padding-right = 1
+;
+label-muted = "Muted"
+label-muted-foreground = ${color.background}
+label-muted-background = ${xrdb:color4}
+label-muted-padding-right = 2
+label-muted-padding-left = 1
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
+
+; ramp-volume-0 = 
+; ramp-volume-1 = 
+; ramp-volume-2 = 
+; ramp-volume-3 = 
+; ramp-volume-4 = 
+ramp-volume-foreground = ${color.background}
+ramp-volume-padding-left = 1
+
+; If defined, it will replace <ramp-volume> when
+; headphones are plugged in to `headphone_control_numid`
+; If undefined, <ramp-volume> will be used for both
+; Only applies if <ramp-volume> is used
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <ramp><label>
+format-label-background = ${xrdb:color5}
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage:4%%
+label-padding-right = 2
+label-background = ${xrdb:color5}
+label-foreground = ${color.background}
+
+; Only applies if <ramp> is used
+
+ramp-0 =  
+ramp-1 =  
+ramp-2 =  
+ramp-3 =  
+ramp-4 =  
+ramp-foreground = ${color.background}
+ramp-background = ${xrdb:color5}
+ramp-padding-left = 2
+ramp-padding-right = 0
+
+; Only applies if <bar> is used
+;;bar-width = 10
+;;bar-indicator = |
+;;bar-fill = ─
+;;bar-empty = ─
+
+[module/network]
+type = internal/network
+interface = wlo1
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 1.0
+
+; Test connectivity every Nth update
+; A value of 0 disables the feature
+; NOTE: Experimental (needs more testing)
+; Default: 0
+;ping-interval = 3
+
+; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
+; Minimum output width of upload/download rate
+; Default: 3
+;;udspeed-minwidth = 5
+
+; Accumulate values from all interfaces
+; when querying for up/downspeed rate
+; Default: false
+accumulate-stats = true
+
+; Consider an `UNKNOWN` interface state as up.
+; Some devices have an unknown state, even when they're running
+; Default: false
+unknown-as-up = true
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <ramp-signal> <label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = "	"
+;""
+format-disconnected-prefix-foreground = ${color.color3}
+format-disconnected-prefix-padding-left = 3
+format-disconnected-prefix-padding-right = 1
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+;;format-packetloss = <animation-packetloss> <label-connected>
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected = "%{A1: networkmanager_dmenu:}%essid% %downspeed%%{A}"
+;;label-connected-foreground = #eefafafa
+label-connected-foreground = ${color.color3}
+label-connected-padding-left = 2
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+; Default: (none)
+label-disconnected = "%{A1: networkmanager_dmenu:}Disconnected%{A}"
+label-disconnected-padding-left = 2
+;;label-disconnected-foreground = #66ffffff
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 	 
+ramp-signal-1 = 	 
+ramp-signal-2 =  
+ramp-signal-3 =  
+ramp-signal-4 =  
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-3 = 
+;ramp-signal-4 = 
+ramp-signal-foreground = ${color.color3}
+ramp-signal-padding-left = 3
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/themes/blocks/scripts/system-bluetooth-bluetoothctl.sh
+tail = true
+click-left = ~/.config/polybar/themes/blocks/system-bluetooth-bluetoothctl.sh --toggle &
+
+format = <label>
+format-background = ${xrdb:color1}
+format-foreground = ${color.background}
+
+label =
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = AC0
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging><label-charging>
+format-charging-prefix = 
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity><label-discharging>
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+format-full = <label-full>
+format-full-prefix = ""
+format-full-prefix-foreground = ${color.background}
+format-full-prefix-background = ${xrdb:color7}
+format-full-prefix-padding-left = 2
+format-full-prefix-padding-right = 1
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+
+label-charging = %percentage%%
+label-charging-foreground = ${color.background}
+label-charging-background = ${xrdb:color7}
+label-charging-padding-right = 2
+label-charging-padding-left = 1
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = %percentage%%
+label-discharging-foreground = ${color.background}
+label-discharging-background = ${xrdb:color7}
+label-discharging-padding-right = 2
+label-discharging-padding-left = 1
+
+; Available tokens:
+;   %percentage% (default)
+label-full = %percentage%%
+label-full-background = ${xrdb:color7}
+label-full-foreground = ${color.background}
+label-full-padding-right = 2
+
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-3 =  
+ramp-capacity-4 =  
+ramp-capacity-foreground = ${color.background}
+ramp-capacity-background = ${xrdb:color7}
+ramp-capacity-padding-left = 2
+ramp-capacity-padding-right = 0
+
+; Only applies if <bar-capacity> is used
+;bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+;animation-charging-0 =  
+animation-charging-0 =  
+;animation-charging-1 = 
+;animation-charging-2 = 
+;animation-charging-3 = 
+;animation-charging-4 = 
+;animation-charging-5 = 
+animation-charging-foreground = ${color.background}
+animation-charging-background = ${xrdb:color7}
+animation-charging-padding-left = 2
+
+; Framerate in milliseconds
+; animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+;;animation-discharging-0 = 
+;;animation-discharging-1 = 
+;;animation-discharging-2 = 
+;;animation-discharging-3 = 
+;;animation-discharging-4 = 
+;;animation-discharging-5 = 
+;;animation-discharging-6 = 
+;;animation-discharging-7 = 
+;;animation-discharging-8 = 
+
+; Framerate in milliseconds
+;animation-discharging-framerate = 500
+
+
+
+[settings]
+;screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+                      

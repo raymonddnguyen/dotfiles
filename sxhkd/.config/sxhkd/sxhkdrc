@@ -1,0 +1,226 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return 
+    kitty --config ~/.config/kitty/kitty_bspwm.conf
+
+ctrl + grave
+    kitty --config ~/.config/kitty/kitty_bspwm.conf
+    
+# program launcher
+super + space
+	rofi -modi run,drun -show drun -show-icons -disable-history 
+
+# make sxhkd reload its configuration files:
+super + ctrl + Escape
+	pkill -USR1 -x sxhkd; \
+    notify-send -t 2000 "Sxhkd" "Reloaded configuration file";
+
+#
+# bspwm hotkeys
+#
+
+# Focus the node in the given direction.
+alt + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+alt + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+alt + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+ctrl + alt + x
+    betterlockscreen -l dim 
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+alt + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+# super + {_,shift + }c
+alt + n
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+alt + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+alt + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+alt + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+
+# TODO: fix this
+#Expand or contract node in the given direction.
+#
+# For floating windows one can use Alt + Right Mouse click to
+# drag/resize in the given direction (this works in other DEs as well,
+# such as MATE and Xfce).  I have not set the script to resize floating
+# windows because: (i) I do not use them and if I do I do not want to
+# change their dimensions, and (ii) to keep the script concise.
+#alt + ctrl + {h,j,k,l}
+#    ~/bin/resize_bspwm {west,south,north,east} 50
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# desktop
+#
+
+# move to next or previous desktop
+super + ctrl + {Left, Right}
+    bspc desktop -f {prev,next}
+
+
+#
+# volume and brightness
+#
+
+# lower volume
+XF86AudioLowerVolume
+	~/bin/volume.sh down
+    #amixer set Master 5%-
+
+# raise volume
+XF86AudioRaiseVolume
+    ~/bin/volume.sh up
+	#amixer set Master 5%+
+
+# mute volume
+XF86AudioMute
+    ~/bin/volume.sh mute
+    #amixer set Master toggle
+
+# lower brightness
+XF86MonBrightnessDown
+    ~/bin/brightness.sh down
+	#xbacklight -dec 5
+
+# raise brightness
+XF86MonBrightnessUp
+    ~/bin/brightness.sh up
+	#xbacklight -inc 5
+
+#
+# application shortcuts
+#
+
+# discord
+alt + d
+    discord
+
+# browser
+alt + b
+    brave
+
+# screenshot to clipboard
+ctrl + super + alt + 3
+    ~/bin/screenshot_area.sh
+
+# screenshot fullscreen
+ctrl + super + alt + 4
+    ~/bin/screenshot_fullscreen.sh
+
+# create 5 second gif of area
+ctrl + super + alt + 5
+    ~/bin/record_area.sh
+#
+# Touchpad 
+#
+
+### Three finger swipe (left or right) to change desktop
+#@button{10,11}
+#    bspc desktop -f {prev,next}
+
+# set random wallpaper and pywal
+super + ctrl + n
+    random_image=$(ls ~/workspace/wallpapers/ | shuf -n 1); \ 
+    feh --bg-fill "$HOME/workspace/wallpapers/$random_image"; \ 
+    eval "set -- $(sed 1d "$HOME/.fehbg")"; \ 
+    wal -i $4; \
+    pkill dunst; \
+    dunst &;
+
+# Don't need this line anymore
+#cat ~/.cache/wal/colors.css ~/.config/beautiful-discord/pywal_discord_default.css > ~/.config/beautiful-discord/discord_pywal.css; \

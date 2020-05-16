@@ -1,0 +1,4 @@
+#!/bin/sh
+# depends on `jq'
+#bspc query -T -d focused | jq ".root.firstChild.client.className"      # name of focused window
+bspc query -D -d focused --names &                                        # name of desktop 

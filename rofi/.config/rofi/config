@@ -1,0 +1,6 @@
+rofi.terminal:         kitty
+rofi.sidebar-mode:     false
+rofi.theme:            colors-rofi-dark-pywal.rasi
+rofi.drun-icon-theme:  Papirus
+rofi.show-icons:       true
+

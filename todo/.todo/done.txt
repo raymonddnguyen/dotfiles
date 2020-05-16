@@ -1,0 +1,10 @@
+x 2020-04-28 Add shortcuts for screenshots
+x 2020-04-28 read natenberg for options
+x 2020-04-28 read viet's PS
+x 2020-04-29 add shortcuts for screenshot
+x 2020-05-01 disable middle mouse button paste for vim
+x 2020-05-02 check pixiv for wallpapers
+x 2020-05-03 netflix: haroldnguyen080\@gmail.com Hoang1993
+x 2020-05-05 refresh colors for dunst
+x 2020-05-07 check if glasscord is necessary
+x 2020-05-13 handle dotfiles with gnu stow or alternative

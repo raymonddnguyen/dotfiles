@@ -1,0 +1,6 @@
+configuration {
+    display-drun:    "";
+    show-icons:      true;
+}
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"

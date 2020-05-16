@@ -1,0 +1,8 @@
+uninstall kde?
+fix lightdm stop job issue on shutdown
+OS 3 easy pieces
+create sxhkd shortcut cheatsheet
+remind lannhu about getmypayment address
+get bluetooth module to work in polybar
+caprine rice?
+re:zero ovas
