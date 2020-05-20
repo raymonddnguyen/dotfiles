@@ -146,6 +146,7 @@ zle -N vi-yank-x-selection
 bindkey -a '^Y' vi-yank-x-selection
 
 # Plugins
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/scripts/zplug/init.zsh
 zplug "b4b4r07/zsh-vimode-visual"
 
@@ -219,6 +220,7 @@ bindkey -M vivis 'y'  vi-visual-yank
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias mv='mv -i'
 alias code='vscodium'
 alias open='xdg-open'
 alias t='todo.sh'

@@ -20,6 +20,9 @@ set selection-clipboard clipboard
 set zoom-min                                    10
 set guioptions                                  ""
 
+# disable sandbox to open hyperlinks
+set sandbox none
+
 # pywal colors
 set recolor                                     "true"
 set completion-bg                               "{background}"
