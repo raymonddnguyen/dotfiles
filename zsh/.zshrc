@@ -220,6 +220,7 @@ bindkey -M vivis 'y'  vi-visual-yank
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls='ls --color=auto'
 alias mv='mv -i'
 alias code='vscodium'
 alias open='xdg-open'

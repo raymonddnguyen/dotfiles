@@ -142,6 +142,10 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Underline when going to insert mode
 " autocmd InsertEnter,InsertLeave * set cul!
 
+" Set cursor to thin line in insert mode
+" let &t_SI = "\e[6 q"
+" let &t_EI = "\e[2 q"
+
 " Linux: open browser with xdg-open using gx under cursor
 let g:netrw_browsex_viewer= "xdg-open"
 
@@ -244,7 +248,8 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=~/.vim_runtime/temp_dirs/undodir
+    "set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undodir=~/.vim/undo
     set undofile
 catch
 endtry
