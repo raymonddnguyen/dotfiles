@@ -146,7 +146,6 @@ zle -N vi-yank-x-selection
 bindkey -a '^Y' vi-yank-x-selection
 
 # Plugins
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/scripts/zplug/init.zsh
 zplug "b4b4r07/zsh-vimode-visual"
 
@@ -234,5 +233,12 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+# zsh auto-suggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# zsh syntax highlighting
+# zsh-syntax-highlighting.zsh wraps ZLE widgets. It must be sourced after all custom widgets have been created (i.e., after all zle -N calls and after running compinit)
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
