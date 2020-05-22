@@ -28,6 +28,10 @@ nmap <leader>q :q!<cr>
 :map <MiddleMouse> <Nop>
 :imap <MiddleMouse> <Nop>
 
+" Consecutive visual increment
+vnoremap <C-a> g<C-a>
+vnoremap g<C-a> <C-a>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins, 
 " :PlugInstall to install plugins, :PlugUpdate to update or install
@@ -53,7 +57,8 @@ Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'dylanaraps/wal.vim'
-Plug 'triglav/vim-visual-increment'
+Plug 'sheerun/vim-polyglot'
+Plug 'psliwka/vim-smoothie'
 
 " Initialize plugin system
 call plug#end()
@@ -86,7 +91,7 @@ set mouse=a
 " Clipboard set to global and ctrl c/v maps
 " set clipboard=unnamedplus
 vmap <C-c> "+y
-vmap <C-x> "+c
+vmap <C-x> "+c                              
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
 
