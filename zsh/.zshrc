@@ -9,9 +9,12 @@ wal -i $4 > /dev/null 2>&1
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Neofetch with image
-random_image=$(ls ~/workspace/neofetch_images/ | shuf -n 1)
-neofetch --source "$HOME/workspace/neofetch_images/$random_image" --size 270px 
+# If not in a tmux session, run neofetch
+if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
+    # Neofetch with image
+    random_image=$(ls ~/workspace/neofetch_images/ | shuf -n 1)
+    neofetch --source "$HOME/workspace/neofetch_images/$random_image" --size 270px 
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -219,7 +222,7 @@ bindkey -M vivis 'y'  vi-visual-yank
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='ls --color=auto'
+alias ls='exa'
 alias mv='mv -i'
 alias code='vscodium'
 alias open='xdg-open'

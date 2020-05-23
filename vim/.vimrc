@@ -91,9 +91,12 @@ set mouse=a
 " Clipboard set to global and ctrl c/v maps
 " set clipboard=unnamedplus
 vmap <C-c> "+y
-vmap <C-x> "+c                              
+vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
+
+vnoremap <leader>y "+y
+vnoremap <leader>x "+c
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -148,11 +151,19 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " autocmd InsertEnter,InsertLeave * set cul!
 
 " Set cursor to thin line in insert mode
-" let &t_SI = "\e[6 q"
-" let &t_EI = "\e[2 q"
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+    let &t_SI = "\e[5 q"
+    let &t_EI = "\e[2 q"
+endif
 
 " Linux: open browser with xdg-open using gx under cursor
 let g:netrw_browsex_viewer= "xdg-open"
+
+" Set windows to open below
+set splitbelow
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -204,7 +215,7 @@ set noswapfile
 " Use spaces instead of tabs
 set expandtab
 
-" Be smart when using tabs ;)
+" Be smart when using tabs 
 set smarttab
 
 " 1 tab == 4 spaces
@@ -246,7 +257,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on
