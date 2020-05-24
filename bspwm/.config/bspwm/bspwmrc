@@ -10,8 +10,8 @@ xbindkeys &                                                                 # di
 
 bspc monitor -d I II III IV V 
 
-color=$(xrdb -query | grep "color4" | cut -f2 | sed -r 's/#//' | head -n 1)
-color2=$(xrdb -query | grep "color0" | cut -f2 | sed -r 's/#//' | head -n 1)
+#color=$(xrdb -query | grep "color4" | cut -f2 | sed -r 's/#//' | head -n 1)
+#color2=$(xrdb -query | grep "color0" | cut -f2 | sed -r 's/#//' | head -n 1)
 
 # Border
 bspc config border_width                                    3

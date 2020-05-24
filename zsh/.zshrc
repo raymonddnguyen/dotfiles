@@ -223,6 +223,7 @@ bindkey -M vivis 'y'  vi-visual-yank
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls='exa'
+alias cat='bat'
 alias mv='mv -i'
 alias code='vscodium'
 alias open='xdg-open'
