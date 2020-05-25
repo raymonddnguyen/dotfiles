@@ -18,7 +18,7 @@
     # Add vertical padding to the inside of the notification
     # same size as polybar blocks
     #padding = 13
-    padding = 6
+    padding = 13 
 
     # Add horizontal padding for when the text gets long enough
     horizontal_padding = 15 
@@ -43,7 +43,7 @@
     #   %i  iconname (including its path)
     #   %I  iconname (without its path)
     # Usage: `notify-send 'Title' 'Summary'`
-    format = "<b>%s</b>: %b"
+    format = "<b>%s</b>:\n%b"
 
     # Allow some HTML tags like <i> and <u> in notifications
     markup = full
@@ -68,6 +68,10 @@
 
     # Max number of notifications for history
     history_length = 10
+
+    # The spacing between lines.  If the height is smaller than the
+    # font height, it will get raised to the font height.
+    line_height = 4
 
 # These are the keybindings used to control dunst notifications
 [shortcuts]
