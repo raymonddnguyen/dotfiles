@@ -100,19 +100,19 @@ modules-left = mpd
 [bar/misc]
 inherit = bar/base
 width = 17.9%
-offset-x = 65%
+offset-x = 61.8%
 modules-left = backlight alsa network
 
 [bar/tray]
 inherit = bar/base
-width = 14.8%
+width = 18.7%
 
 padding-right = 0
 ; 84%
-offset-x = 84.8%
+offset-x = 80.7%
 
 # pulseaudio
-modules-left = battery time power
+modules-left = bluetooth battery time power
 
 ;                      _       _           
 ;  _ __ ___   ___   __| |_   _| | ___  ___ 
@@ -564,15 +564,22 @@ ramp-signal-padding-left = 3
 
 [module/bluetooth]
 type = custom/script
-exec = ~/.config/polybar/themes/blocks/scripts/system-bluetooth-bluetoothctl.sh
+interval = 1
+exec = ~/bin/rofi_bluetooth.sh --power
 tail = true
-click-left = ~/.config/polybar/themes/blocks/system-bluetooth-bluetoothctl.sh --toggle &
+click-left = /home/raymond/bin/rofi_bluetooth.sh &
+click-right = /home/raymond/bin/rofi_bluetooth.sh --toggle &
+#exec = ~/.config/polybar/themes/blocks/scripts/system-bluetooth-bluetoothctl.sh
+#click-left = ~/.config/polybar/themes/blocks/system-bluetooth-bluetoothctl.sh --toggle &
 
 format = <label>
 format-background = ${xrdb:color1}
 format-foreground = ${color.background}
 
-label =
+#label = bluetooth
+#label-foreground = red 
+label-padding-left = 4
+label-padding-right = 4
 
 [module/battery]
 type = internal/battery
