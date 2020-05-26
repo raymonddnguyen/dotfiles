@@ -109,7 +109,7 @@ width = 18.7%
 
 padding-right = 0
 ; 84%
-offset-x = 80.7%
+offset-x = 80.77%
 
 # pulseaudio
 modules-left = bluetooth battery time power
