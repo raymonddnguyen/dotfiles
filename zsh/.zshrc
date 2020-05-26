@@ -1,9 +1,5 @@
-# Enable powerline (Don't need if using powerlevel10k)
-#powerline-daemon -q
-#. /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
-
 # pywal
-eval "set -- $(sed 1d "$HOME/.fehbg")"  
+eval "set -- $(sed 1d "$HOME/.fehbg")"
 wal -i $4 > /dev/null 2>&1
 
 # If you come from bash you might have to change your $PATH.
@@ -13,7 +9,7 @@ wal -i $4 > /dev/null 2>&1
 if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
     # Neofetch with image
     random_image=$(ls ~/workspace/neofetch_images/ | shuf -n 1)
-    neofetch --source "$HOME/workspace/neofetch_images/$random_image" --size 270px 
+    neofetch --source "$HOME/workspace/neofetch_images/$random_image" --size 270px
 fi
 
 # Path to your oh-my-zsh installation.
@@ -23,7 +19,9 @@ export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH:$HOME/anaconda3/bin"  # commented out by conda initialize
 
 # Add additional scripts if ~/bin exists
-if [ -d "$HOME/bin" ] ; then PATH="$HOME/bin:$PATH" fi
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$PATH:$HOME/bin"
+fi
 
 # Completion for kitty
 autoload -Uz compinit
@@ -32,14 +30,13 @@ compinit
 kitty + complete setup zsh | source /dev/stdin
 
 # Set XDG config home
-XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Set Editor for vi-mode
 export EDITOR="vim"
 
 # FZF customizations
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git . /'                                                   # Searches everything
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'    # Searches everything
 export FZF_DEFAULT_OPTS='--height=40% --layout=reverse --info=hidden --border'
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
@@ -208,7 +205,7 @@ bindkey -M vivis 'y'  vi-visual-yank
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags

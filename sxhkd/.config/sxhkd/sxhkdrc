@@ -48,7 +48,7 @@ super + g
 
 # sxhkd keybindings
 super + F2
-    cat ~/.config/sxhkd/sxhkdrc | awk '/^[a-z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | column -t -s $'\t' | rofi -dmenu -no-show-icons -width 1000 -height 1000 -i -p "sxhkd"
+    cat ~/.config/sxhkd/sxhkdrc | awk '/^[a-z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | column -t -s $'\t' | rofi -dmenu -no-show-icons -i -p "sxhkd"
 
 #
 # state/flags
