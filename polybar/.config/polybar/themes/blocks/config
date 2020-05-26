@@ -41,8 +41,8 @@ grey = #8C8C8C
 indigo = #6C77BB
 blue-gray = #6D8895
 
-;  _                    
-; | |__   __ _ _ __ ___ 
+;  _
+; | |__   __ _ _ __ ___
 ; | '_ \ / _` | '__/ __|
 ; | |_) | (_| | |  \__ \
 ; |_.__/ \__,_|_|  |___/
@@ -80,7 +80,7 @@ offset-x = 10
 ; wsnumber
 modules-left = bspwm xwindow
 
-; display app icons 
+; display app icons
 tray-position = right
 
 
@@ -114,12 +114,12 @@ offset-x = 80.77%
 # pulseaudio
 modules-left = bluetooth battery time power
 
-;                      _       _           
-;  _ __ ___   ___   __| |_   _| | ___  ___ 
+;                      _       _
+;  _ __ ___   ___   __| |_   _| | ___  ___
 ; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
 ; | | | | | | (_) | (_| | |_| | |  __/\__ \
 ; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
-                                         
+
 [module/wsnumber]
 type = custom/script
 exec = ~/.config/polybar/themes/blocks/get_workspace
@@ -136,8 +136,8 @@ scroll-down = i3 workspace prev
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:50:...%
-label-foreground = ${color.color1} 
-label-background = ${color.background} 
+label-foreground = ${color.color1}
+label-background = ${color.background}
 label-padding = 2
 
 [module/i3]
@@ -281,7 +281,7 @@ ramp-volume-1 = ""
 ramp-volume-2 = ""
 
 
-label-muted = "    "   
+label-muted = "    "
 label-muted-background = ${color.background}
 label-muted-foreground = ${color.color3}
 label-muted-padding = 2
@@ -343,8 +343,8 @@ type = internal/alsa
 ; Name of the master, speaker and headphone mixers
 ; Use the following command to list available mixer controls:
 ; $ amixer scontrols | sed -nr "s/.*'([[:alnum:]]+)'.*/\1/p"
-; If master, speaker or headphone-soundcard isn't the default, 
-; use `amixer -c # scontrols` instead where # is the number 
+; If master, speaker or headphone-soundcard isn't the default,
+; use `amixer -c # scontrols` instead where # is the number
 ; of the master, speaker or headphone soundcard respectively
 ;
 ; Default: Master
@@ -393,7 +393,7 @@ label-volume-padding-left = 1
 
 ; Available tokens:
 ;   %percentage% (default
-format-muted-prefix =   
+format-muted-prefix = 
 format-muted-prefix-background = ${xrdb:color4}
 format-muted-prefix-foreground = ${color.background}
 format-muted-prefix-padding-left = 2
@@ -449,11 +449,11 @@ label-foreground = ${color.background}
 
 ; Only applies if <ramp> is used
 
-ramp-0 =  
-ramp-1 =  
-ramp-2 =  
-ramp-3 =  
-ramp-4 =  
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
 ramp-foreground = ${color.background}
 ramp-background = ${xrdb:color5}
 ramp-padding-left = 2
@@ -550,11 +550,11 @@ label-disconnected-padding-left = 2
 ;label-packetloss-foreground = #eefafafa
 
 ; Only applies if <ramp-signal> is used
-ramp-signal-0 = 	 
-ramp-signal-1 = 	 
-ramp-signal-2 =  
-ramp-signal-3 =  
-ramp-signal-4 =  
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ;ramp-signal-1 = 
 ;ramp-signal-2 = 
 ;ramp-signal-3 = 
@@ -572,13 +572,14 @@ click-right = /home/raymond/bin/rofi_bluetooth.sh --toggle &
 #exec = ~/.config/polybar/themes/blocks/scripts/system-bluetooth-bluetoothctl.sh
 #click-left = ~/.config/polybar/themes/blocks/system-bluetooth-bluetoothctl.sh --toggle &
 
-format = <label>
+format-prefix = ""
+format-prefix-padding-left = 4
 format-background = ${xrdb:color1}
 format-foreground = ${color.background}
 
 #label = bluetooth
-#label-foreground = red 
-label-padding-left = 4
+#label-foreground = red
+label-padding-left = 2
 label-padding-right = 4
 
 [module/battery]
@@ -609,7 +610,7 @@ poll-interval = 5
 ;   <ramp-capacity>
 ;   <animation-charging>
 format-charging = <animation-charging><label-charging>
-format-charging-prefix = 
+format-charging-prefix =
 ; Available tags:
 ;   <label-discharging> (default)
 ;   <bar-capacity>
@@ -657,11 +658,11 @@ label-full-padding-right = 2
 
 
 ; Only applies if <ramp-capacity> is used
-ramp-capacity-0 =  
-ramp-capacity-1 =  
-ramp-capacity-2 =  
-ramp-capacity-3 =  
-ramp-capacity-4 =  
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 ramp-capacity-foreground = ${color.background}
 ramp-capacity-background = ${xrdb:color7}
 ramp-capacity-padding-left = 2
@@ -671,8 +672,8 @@ ramp-capacity-padding-right = 0
 ;bar-capacity-width = 10
 
 ; Only applies if <animation-charging> is used
-;animation-charging-0 =  
-animation-charging-0 =  
+;animation-charging-0 = 
+animation-charging-0 = 
 ;animation-charging-1 = 
 ;animation-charging-2 = 
 ;animation-charging-3 = 
@@ -714,4 +715,4 @@ margin-top = 0
 margin-bottom = 0
 
 ; vim:ft=dosini
-                      
+

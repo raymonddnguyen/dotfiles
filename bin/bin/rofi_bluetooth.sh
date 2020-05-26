@@ -194,10 +194,10 @@ print_status() {
 print_power() {
     if power_on; then
         #printf '  On'
-        printf '	  On'
+        printf 'On'
     else
         #printf '  Off'
-        printf '	  Off'
+        printf 'Off'
     fi
 }
 
