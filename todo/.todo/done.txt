@@ -11,3 +11,5 @@ x 2020-05-13 handle dotfiles with gnu stow or alternative
 x 2020-05-22 fix lightdm stop job issue on shutdown
 x 2020-05-24 get bluetooth module to work in polybar
 x 2020-05-24 create sxhkd shortcut cheatsheet
+x 2020-05-25 caprine rice?
+x 2020-05-25 switch to neovim

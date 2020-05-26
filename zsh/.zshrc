@@ -230,6 +230,11 @@ alias open='xdg-open'
 alias t='todo.sh'
 alias kill-true-orphans="sudo pacman -Rns $(pacman -Qtdq)"
 
+# Use nvim instead of vim when available
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
+
 # powerlevel 10k
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 

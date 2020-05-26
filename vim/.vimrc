@@ -1,6 +1,3 @@
-" Powerline Error Fix
-let g:powerline_pycmd = 'py3'
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,8 +29,11 @@ nmap <leader>q :q!<cr>
 vnoremap <C-a> g<C-a>
 vnoremap g<C-a> <C-a>
 
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins, 
+" => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -59,9 +59,41 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'dylanaraps/wal.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'psliwka/vim-smoothie'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Neovim only
+if exists(':tnoremap')
+    Plug 'neomake/neomake'
+endif
 
 " Initialize plugin system
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Neomake
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! MyOnBattery()
+  if has('macunix')
+    return match(system('pmset -g batt'), "Now drawing from 'Battery Power'") != -1
+  elseif has('unix')
+    return readfile('/sys/class/power_supply/AC0/online') == ['0']
+  endif
+
+  return 0
+endfunction
+
+" If on battery, run neomake automatically on write only, else, run on normal, read, write, and insert changes after 0.5s
+if exists(':tnoremap')
+    if MyOnBattery()
+        call neomake#configure#automake('w')
+    else
+        call neomake#configure#automake('nrwi', 500)
+    endif
+endif
+
+" Open error location list automatically
+let g:neomake_open_list = 2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -80,7 +112,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Save Stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -131,14 +163,14 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Add a bit extra margin to the left
 set foldcolumn=1
@@ -183,7 +215,7 @@ endfunction
 autocmd ColorScheme * call AdaptColorscheme()
 
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Set 256 color palette
 set t_Co=256
@@ -215,7 +247,7 @@ set noswapfile
 " Use spaces instead of tabs
 set expandtab
 
-" Be smart when using tabs 
+" Be smart when using tabs
 set smarttab
 
 " 1 tab == 4 spaces
@@ -246,8 +278,8 @@ map <C-l> <C-W>l
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -257,6 +289,51 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Airline status bar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatically displays all buffers when there's only one tab open.
+let g:airline#extensions#tabline#enabled = 1
+
+" Enable Powerline fonts
+let g:airline_powerline_fonts = 1
+
+" The separator used on the left side
+"let g:airline_left_sep = '>'
+
+" The separator used on the right side
+"let g:airline_right_sep = '<'
+
+" Enable modified detection
+let g:airline_detect_modified = 1
+
+" Enable paste detection
+let g:airline_detect_paste = 1
+
+" Enable crypt detection
+let g:airline_detect_crypt = 1
+
+" Enable spell detection
+let g:airline_detect_spell = 1
+
+" Display spelling language when spell detection is enabled (if enough space is available)
+let g:airline_detect_spelllang = 1
+
+" Enable iminsert detection
+let g:airline_detect_iminsert = 0
+
+" Determine whether inactive windows should have the left section collapsed to only the filename of that buffer.
+" let g:airline_inactive_collapse = 1
+
+" Use alternative seperators for the statusline of inactive windows
+" let g:airline_inactive_alt_sep = 1
+
+" Themes are automatically selected based on the matching colorscheme. this can be overridden by defining a value.
+let g:airline_theme = 'powerlineish'
+
+" Show warning and error counts returned by neomake#statusline#LoclistCounts
+let g:airline#extensions#neomake#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on
