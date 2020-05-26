@@ -29,8 +29,8 @@ nmap <leader>q :q!<cr>
 vnoremap <C-a> g<C-a>
 vnoremap g<C-a> <C-a>
 
-"Remove all trailing whitespace by pressing F5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+"Remove all trailing whitespace by pressing F2
+nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins,
@@ -61,6 +61,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'psliwka/vim-smoothie'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Neovim only
 if exists(':tnoremap')
@@ -69,6 +71,63 @@ endif
 
 " Initialize plugin system
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Most commands support CTRL-T / CTRL-X / CTRL-V key bindings
+" to open in a new tab, a new split, or in a new vertical split
+
+" Current file directory
+nnoremap <leader>- :FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>
+
+" Search in current directory
+nnoremap <leader>ff :FZF<cr>
+
+" :Files [Path]
+nnoremap <leader>fF :Files<cr>
+
+" Open buffers
+nnoremap <leader>b :Buffers<cr>
+
+" Lines in loaded buffers
+nnoremap <leader>fl :Lines<cr>
+
+" Lines in the current buffer
+nnoremap <leader>fb :BLines<cr>
+
+" Tags in the project
+nnoremap <leader>ft :Tags<cr>
+
+" v:oldfiles and open buffers
+nnoremap <leader>fh :History<cr>
+
+" Helptags
+nnoremap <leader>fH :Helptags<cr>
+
+" Vim Command History
+nnoremap <leader>f: :History:<cr>
+
+" Search History
+nnoremap <leader>f/ :History/<cr>
+
+" Git files (git ls-files)
+nnoremap <leader>fg :GFiles<cr>
+
+" Git files (git status)
+nnoremap <leader>fs :GFiles?<cr>
+
+" Git commits (requires fugitive.vim)
+nnoremap <leader>fc :Commits<cr>
+
+" Vim Commands
+nnoremap <leader>fv :Commands<cr>
+
+" Change colorscheme
+nnoremap <leader>fC :Colors<cr>
+
+" Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
+nnoremap <leader>fr :Rg<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Neomake
@@ -108,6 +167,13 @@ map <leader>nf :NERDTreeFind<cr>
 
 " Close vim if the only window left is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =>  Yankstack
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load yankstack without default meta-p or meta-P bindings,
+" use :Yank
+let g:yankstack_map_keys = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Save Stuff
@@ -264,7 +330,7 @@ set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :nohl<cr>
 
@@ -280,6 +346,11 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
+
+" Buffer movement and delete
+map gb :bn<cr>
+map gB :bp<cr>
+map gd :bd<cr>
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -360,6 +431,17 @@ elseif has("linux")
     set gfn=IBM\ Plex\ Mono:h14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
 elseif has("unix")
     set gfn=Monospace\ 11
+endif
+
+""""""""""""""""""""""""""""""
+" => Shell section
+""""""""""""""""""""""""""""""
+if exists('$TMUX')
+    if has('nvim')
+        set termguicolors
+    else
+        set term=screen-256color
+    endif
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
