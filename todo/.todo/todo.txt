@@ -4,3 +4,4 @@ remind lannhu about getmypayment address
 re:zero ovas
 update dotfiles README
 read natenberg
+test out nnn
