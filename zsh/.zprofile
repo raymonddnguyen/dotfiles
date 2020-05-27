@@ -1,5 +1,14 @@
-# Path to oh-my-zsh installation.
+# Environment Variables
 export ZSH="$HOME/.oh-my-zsh"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='nvim'
+fi
 
 # Add anaconda to path
 export PATH="$PATH:$HOME/anaconda3/bin"  # commented out by conda initialize
