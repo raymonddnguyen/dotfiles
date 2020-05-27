@@ -1,9 +1,9 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # pywal
 eval "set -- $(sed 1d "$HOME/.fehbg")"
 wal -i $4 > /dev/null 2>&1
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # If not in a tmux session, run neofetch
 if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
@@ -12,37 +12,11 @@ if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
     neofetch --source "$HOME/workspace/neofetch_images/$random_image" --size 270px
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Add anaconda to path
-export PATH="$PATH:$HOME/anaconda3/bin"  # commented out by conda initialize
-
-# Add additional scripts if ~/bin exists
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$PATH:$HOME/bin"
-fi
-
 # Completion for kitty
 autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
-
-# Set XDG config home
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# Set Editor for vi-mode
-export EDITOR="vim"
-
-# FZF customizations
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'    # Searches everything
-export FZF_DEFAULT_OPTS='--height=40% --layout=reverse --info=hidden --border'
-export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
-# For fzf completion and keybindings (oh-my-zsh)
-export FZF_BASE=/usr/local/bin/fzf
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -247,4 +221,4 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh syntax highlighting
 # zsh-syntax-highlighting.zsh wraps ZLE widgets. It must be sourced after all custom widgets have been created (i.e., after all zle -N calls and after running compinit)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
