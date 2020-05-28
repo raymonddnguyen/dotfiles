@@ -2,9 +2,12 @@
 export ZSH="$HOME/.oh-my-zsh"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LANG=en_US.UTF-8
-export HISTFILESIZE=500000000
-export HISTSIZE=50000000
+
+# Note: Need to edit $ZSH/lib/history.zsh if using oh-my-zsh
+export HISTFILESIZE=5000000
+export HISTSIZE=5000000
 export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S "
+export SAVEHIST=$HISTSIZE
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
