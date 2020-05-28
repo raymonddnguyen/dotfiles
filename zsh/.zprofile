@@ -2,6 +2,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LANG=en_US.UTF-8
+export HISTFILESIZE=500000000
+export HISTSIZE=50000000
+export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S "
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -20,9 +23,6 @@ fi
 
 # Set XDG config home
 export XDG_CONFIG_HOME="$HOME/.config"
-
-# Set Editor for vi-mode
-export EDITOR="nvim"
 
 # FZF customizations
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'    # Searches everything
