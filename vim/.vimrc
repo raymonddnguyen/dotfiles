@@ -134,6 +134,9 @@ nnoremap <leader>fv :Commands<cr>
 " Change colorscheme
 nnoremap <leader>fC :Colors<cr>
 
+" View marks
+nnoremap <leader>fm :Marks<cr>
+
 " Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
 nnoremap <leader>fr :Rg<cr>
 
