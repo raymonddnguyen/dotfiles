@@ -18,7 +18,7 @@ function is_mute {
 function send_notification {
     local volume=$( get_volume )
     local padlimit=8
-    
+
     # Set icon
     if [ "$volume" -ge 80 ]; then
         icon_name="${icon_path}notification-audio-volume-high.svg"
@@ -34,7 +34,7 @@ function send_notification {
     local formatted_line=$(printf "%-*s%s" $((${padlimit} - ${#volume})) "$volume" "$bar")
 
     # Send the notification
-    if [ "$volume" != 0 ]; then 
+    if [ "$volume" != 0 ]; then
         notify-send.sh "$formatted_line" -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"$bar" --replace=555
     else
         notify-send.sh "$volume" -i "$icon_name" -t 2000 -h int:value:"$volume" --replace=555
