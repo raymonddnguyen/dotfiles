@@ -16,8 +16,7 @@
         "rust",
         "go",
         "cpp",
-        "cmake",
-        "c"
+        "cmake"
     ],
     "coc.preferences.rootPatterns": [
         ".git",
