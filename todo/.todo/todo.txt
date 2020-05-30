@@ -5,3 +5,4 @@ re:zero ovas
 update dotfiles README
 read natenberg
 test out nnn
+checkout lightline and bufferline plugin

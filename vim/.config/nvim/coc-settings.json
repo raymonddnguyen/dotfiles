@@ -1,0 +1,37 @@
+{
+    // Schema for options: https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
+    // :help coc.txt
+    "suggest.maxCompleteItemCount": 20,
+    "suggest.noselect": false,
+    "suggest.enablePreview": true,
+    "suggest.removeDuplicateItems": true,
+    "codeLens.enable": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "markdown",
+        "javascript",
+        "html",
+        "yaml",
+        "json",
+        "rust",
+        "go",
+        "cpp",
+        "cmake",
+        "c"
+    ],
+    "coc.preferences.rootPatterns": [
+        ".git",
+        ".hg",
+        ".projections.json",
+        ".vscode"
+    ],
+    // Valid options: ["edit", "split", "vsplit", "tabe", "drop", "tab drop"]
+    "coc.preferences.jumpCommand": "edit",
+    // Python config
+    "python.jediEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    // Clangd config
+    "clangd.semanticHighlighting": true
+}

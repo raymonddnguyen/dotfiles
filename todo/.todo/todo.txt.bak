@@ -5,4 +5,4 @@ re:zero ovas
 update dotfiles README
 read natenberg
 test out nnn
-x 2020-05-28 switch to coc.nvim instead of YCM
+checkout lightline and bufferline plugin

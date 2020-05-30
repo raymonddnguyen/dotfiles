@@ -83,11 +83,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Neovim only
-if exists(':tnoremap')
-    Plug 'neomake/neomake'
-endif
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Initialize plugin system
 call plug#end()
@@ -217,6 +213,13 @@ let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python', 'coc-css',
 " View yank list from coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
+" Format selected text
+vmap <leader>p  <Plug>(coc-format-selected)
+nmap <leader>p  <Plug>(coc-format-selected)
+
+" Change background of floating window to a darker color (gets overwritten by colorscheme)
+" highlight Pmenu ctermfg=NONE ctermbg=2 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FZF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -239,6 +242,7 @@ nnoremap <leader>fB :BLines<cr>
 nnoremap <leader>ft :Tags<cr>
 " v:oldfiles and open buffers
 nnoremap <leader>fh :History<cr>
+" Help tags
 nnoremap <leader>fH :Helptags<cr>
 " Vim Command History
 nnoremap <leader>f: :History:<cr>
@@ -258,31 +262,6 @@ nnoremap <leader>fC :Colors<cr>
 nnoremap <leader>fm :Marks<cr>
 " Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
 nnoremap <leader>fr :Rg<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Neomake
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! MyOnBattery()
-    if has('macunix')
-        return match(system('pmset -g batt'), "Now drawing from 'Battery Power'") != -1
-    elseif has('unix')
-        return readfile('/sys/class/power_supply/AC0/online') == ['0']
-    endif
-
-    return 0
-endfunction
-
-" If on battery, run neomake automatically on write only, else, run on normal, read, write, and insert changes after 0.5s
-if exists(':tnoremap')
-    if MyOnBattery()
-        call neomake#configure#automake('w')
-    else
-        call neomake#configure#automake('nrwi', 500)
-    endif
-endif
-
-" Set to 2 to open error location list automatically
-let g:neomake_open_list = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
@@ -548,7 +527,7 @@ let g:airline_detect_iminsert = 0
 let g:airline_theme = 'powerlineish'
 
 " Show warning and error counts returned by neomake#statusline#LoclistCounts
-let g:airline#extensions#neomake#enabled = 1
+let g:airline#extensions#neomake#enabled = 0
 
 " Enable/disable COC.nvim error/warning display
 " let g:airline#extensions#coc#enabled = 0
