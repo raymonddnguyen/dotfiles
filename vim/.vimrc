@@ -207,8 +207,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Extensions
 " coc config
-let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python', 
-            \ 'coc-css', 'coc-markdownlint', 'coc-yank', 'coc-clangd', 
+let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python',
+            \ 'coc-css', 'coc-markdownlint', 'coc-yank', 'coc-clangd',
             \ 'coc-cmake', 'coc-go', 'coc-rls', 'coc-sh']
 
 " View yank list from coc-yank
@@ -450,6 +450,9 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
+
+" Make it so that a curly brace automatically inserts an indented line
+inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
