@@ -207,8 +207,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Extensions
 " coc config
-let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python', 'coc-css',
-            \ 'coc-yank', 'coc-clangd', 'coc-cmake', 'coc-go', 'coc-rls', 'coc-sh']
+let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python', 
+            \ 'coc-css', 'coc-markdownlint', 'coc-yank', 'coc-clangd', 
+            \ 'coc-cmake', 'coc-go', 'coc-rls', 'coc-sh']
 
 " View yank list from coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
