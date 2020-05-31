@@ -27,11 +27,11 @@ fi
 # Set XDG config home
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# FZF customizations
+# FZF customizations (Dependencies: fd, bat, tree)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'    # Searches everything
-export FZF_DEFAULT_OPTS='--height=40% --layout=reverse --info=hidden --border'
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --info=hidden --border --preview-window 'right:60%' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_T_OPTS="--ansi --preview-window 'right:60%' --preview '([[ -d {} ]] && tree -C {}) || ([[ -f {} ]] && bat --color=always --style=header,grid --line-range :300 {})'"
 
 # For fzf completion and keybindings (oh-my-zsh)
 export FZF_BASE=/usr/local/bin/fzf
