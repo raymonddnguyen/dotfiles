@@ -5,7 +5,6 @@ do
     for backend in wal haishoku colorthief
     do
         status=$?;
-        [ $status -eq 0 ] && wal -i $wallpaper --backend $backend;
-        sleep 2;
+        [ $status -eq 0 ] && wal -sten -i $wallpaper --backend $backend;
     done
 done
