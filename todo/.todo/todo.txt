@@ -6,3 +6,4 @@ update dotfiles README
 read natenberg
 test out nnn
 checkout lightline and bufferline plugin
+add image preview to fzf
