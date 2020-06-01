@@ -112,6 +112,10 @@ alt + shift + {Left,Right}
     bspc node --to-desktop {prev,next}; \
     bspc node --focus ${id}
 
+# rotate a node between vertical and horizontal
+alt + r
+    bspc node @/ -R 90
+
 #
 # preselect
 #
@@ -218,9 +222,19 @@ ctrl + super + alt + 3
 ctrl + super + alt + 4
     ~/bin/screenshot_fullscreen.sh
 
-# create 5 second gif of area
+# start/stop a gif recording of a selection, upload to 0x0.st and copy url to clipboard
 ctrl + super + alt + 5
-    ~/bin/record_area.sh
+    { giph -y -s -l -c 0.3\,0\,0.5\,0.3 \
+        | (trap '' INT; curl -F "file=@-" 0x0.st \
+        | xclip -selection clipboard \
+        && notify-send "Giph" "Gif uploaded to 0x0.st and copied to clipboard."), \
+    killall -INT -g giph && notify-send "Giph" "Stopped Recording."}
+
+# start/stop a gif recording of a selection; save to ~/workspace/videos/
+ctrl + super + alt + 6
+    { giph -y -s -l -c 0.3\,0\,0.5\,0.3 ~/workspace/videos/$(date +%s).gif, \
+    killall -INT -g giph && notify-send "Giph" "Stopped Recording"}
+
 #
 # Touchpad
 #
@@ -232,8 +246,9 @@ ctrl + super + alt + 5
 # set random wallpaper and pywal
 super + ctrl + n
     random_image=$(ls ~/workspace/wallpapers/ | shuf -n 1); \
+    random_backend=$(shuf -n 1 -e wal haishoku colorthief); \
     feh --bg-fill "$HOME/workspace/wallpapers/$random_image"; \
     eval "set -- $(sed 1d "$HOME/.fehbg")"; \
-    wal -i $4; \
+    wal -i $4 --backend $random_backend; \
     pkill dunst; \
     dunst &;
