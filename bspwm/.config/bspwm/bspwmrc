@@ -1,14 +1,14 @@
 #!/bin/sh
 
 #picom --experimental-backends --backend glx --blur-method dual_kawase --blur-strength 3 &
-picom &                                                                     # transparency 
+picom &                                                                     # transparency
 sxhkd &                                                                     # hotkeys
 xsetroot -cursor_name left_ptr &                                            # keep cursor the same for bg focus
 libinput-gestures-setup restart &                                           # three-finger swipe for desktop switching
 fc-cache &                                                                  # reload font cache for polybar
 xbindkeys &                                                                 # disable middle mouse button paste
 
-bspc monitor -d I II III IV V 
+bspc monitor -d I II III IV V
 
 #color=$(xrdb -query | grep "color4" | cut -f2 | sed -r 's/#//' | head -n 1)
 #color2=$(xrdb -query | grep "color0" | cut -f2 | sed -r 's/#//' | head -n 1)
@@ -51,8 +51,8 @@ bspc rule -a Zathura state=tiled focus=on
 random_image=$(ls ~/workspace/wallpapers/ | shuf -n 1);
 
 feh --bg-fill "$HOME/workspace/wallpapers/$random_image";
-    eval "set -- $(sed 1d "$HOME/.fehbg")"; \ 
-    wal -i $4;
+    eval "set -- $(sed 1d "$HOME/.fehbg")"; \
+    wal -n -i $4;
 
 dunst &                                                                     # notifications
 
