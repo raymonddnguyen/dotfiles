@@ -155,25 +155,9 @@ super + alt + shift + {h,j,k,l}
 # windows because: (i) I do not use them and if I do I do not want to
 # change their dimensions, and (ii) to keep the script concise.
 
-# expand or contract node left
-alt + ctrl + h
-    ~/bin/resize_bspwm.sh west
-
-# expand or contract node down
-alt + ctrl + j
-    ~/bin/resize_bspwm.sh south
-
-# expand or contract node up
-alt + ctrl + k
-    ~/bin/resize_bspwm.sh north
-
-# expand or contract node right
-alt + ctrl + l
-    ~/bin/resize_bspwm.sh east
-
-# move a floating window
-super + {Left,Down,Up,Right}
-    bspc node -v {-20 0,0 20,0 -20,20 0}
+# expand or contract node left, down, up, right
+alt + ctrl + {h,j,k,l}
+    {resize_bspwm.sh} {west,south,north,east}
 
 #
 # desktop
@@ -190,27 +174,27 @@ super + ctrl + {Left, Right}
 
 # lower volume
 XF86AudioLowerVolume
-    ~/bin/volume.sh down
+    volume.sh down
     #amixer set Master 5%-
 
 # raise volume
 XF86AudioRaiseVolume
-    ~/bin/volume.sh up
+    volume.sh up
     #amixer set Master 5%+
 
 # mute volume
 XF86AudioMute
-    ~/bin/volume.sh mute
+    volume.sh mute
     #amixer set Master toggle
 
 # lower brightness
 XF86MonBrightnessDown
-    ~/bin/brightness.sh down
+    brightness.sh down
     #xbacklight -dec 5
 
 # raise brightness
 XF86MonBrightnessUp
-    ~/bin/brightness.sh up
+    brightness.sh up
     #xbacklight -inc 5
 
 #
