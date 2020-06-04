@@ -1,26 +1,31 @@
 # Zathura configuration file
 # See man `man zathurarc'
 
+# Map shortcuts
+map b                                           toggle_statusbar
+
 # Open document in fit-width mode by default
 set adjust-open                                 "best-fit"
 
 # One page per row by default
 set pages-per-row                               1
 
-#stop at page boundries
+# Stop at page boundries
 set scroll-page-aware                           "true"
-#set smooth-scroll                               "true"
+# Set smooth-scroll                               "true"
 set scroll-full-overlap                         0.01
 set scroll-step                                 100
 
-# enable copy to clipboard
+# Enable copy to clipboard
 set selection-clipboard clipboard
 
-#zoom settings
+# Zoom settings
 set zoom-min                                    10
-set guioptions                                  ""
 
-# disable sandbox to open hyperlinks
+# Gui Options: statusbar and vertical scrollbar
+set guioptions                                  "sv"
+
+# Disable sandbox to open hyperlinks
 set sandbox none
 
 # pywal colors
@@ -53,3 +58,4 @@ set render-loading-bg                           "{background}"
 set render-loading-fg                           "{foreground}"
 set window-title-home-tilde                     "true"
 set statusbar-basename                          "true"
+
