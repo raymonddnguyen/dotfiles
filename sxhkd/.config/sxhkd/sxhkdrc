@@ -248,10 +248,10 @@ ctrl + super + alt + 6
 
 # set random wallpaper and pywal
 ctrl + super + n
-    random_image=$(ls ~/workspace/wallpapers/ | shuf -n 1); \
+    random_image=$(ls $WALLPAPER_DIR | shuf -n 1); \
     random_backend=$(shuf -n 1 -e wal haishoku colorthief); \
-    feh --bg-fill "$HOME/workspace/wallpapers/$random_image"; \
+    feh --bg-fill "$WALLPAPER_DIR/$random_image"; \
     eval "set -- $(sed 1d "$HOME/.fehbg")"; \
-    wal -qn -i $4 ;\
+    wal -qn -i $4 --backend random;\
     pkill dunst; \
     dunst &;

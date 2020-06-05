@@ -48,9 +48,9 @@ bspc rule -a Zathura state=tiled focus=on
 #bspc rule -a Screenkey manage=off
 
 # Set wallpaper randomly
-random_image=$(ls ~/workspace/wallpapers/ | shuf -n 1);
+random_image=$(ls $WALLPAPER_DIR | shuf -n 1);
 
-feh --bg-fill "$HOME/workspace/wallpapers/$random_image";
+feh --bg-fill "$WALLPAPER_DIR/$random_image";
     eval "set -- $(sed 1d "$HOME/.fehbg")"; \
     wal -n -i $4;
 

@@ -8,8 +8,8 @@ wal -i $4 > /dev/null 2>&1
 # If not in a tmux session, run neofetch
 if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
     # Neofetch with image
-    random_image=$(ls ~/workspace/neofetch_images/ | shuf -n 1)
-    neofetch --source "$HOME/workspace/neofetch_images/$random_image" --size 270px
+    random_image=$(ls $NEOFETCH_IMAGE_DIR | shuf -n 1)
+    neofetch --source "$NEOFETCH_IMAGE_DIR/$random_image" --size 270px
 fi
 
 # Completion for kitty
