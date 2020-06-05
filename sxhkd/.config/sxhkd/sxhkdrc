@@ -252,6 +252,6 @@ ctrl + super + n
     random_backend=$(shuf -n 1 -e wal haishoku colorthief); \
     feh --bg-fill "$WALLPAPER_DIR/$random_image"; \
     eval "set -- $(sed 1d "$HOME/.fehbg")"; \
-    wal -qn -i $4 --backend random;\
+    wal -qn -i $4 --backend $random_backend;\
     pkill dunst; \
     dunst &;
