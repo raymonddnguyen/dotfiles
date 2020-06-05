@@ -15,7 +15,6 @@
         "json",
         "rust",
         "go",
-        "cpp",
         "cmake"
     ],
     "coc.preferences.rootPatterns": [

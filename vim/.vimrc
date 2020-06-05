@@ -84,6 +84,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }         "Need NodeJS and Yarn
 
 " Initialize plugin system
 call plug#end()
@@ -242,8 +243,8 @@ nmap <leader>p  <Plug>(coc-format-selected)
 nnoremap <leader>- :FZF <c-r>=fnameescape(expand('%:p:h'))<cr>/<cr>
 " Search in current directory
 nnoremap <leader>ff :FZF<cr>
-" :Files [Path]
-nnoremap <leader>fF :Files<cr>
+" Search home directory
+nnoremap <leader>fF :Files ~/<cr>
 " Open buffers
 nnoremap <leader>fb :Buffers<cr>
 " Lines in loaded buffers
@@ -308,6 +309,71 @@ map <leader>nf :NERDTreeFind<cr>
 
 " Close vim if the only window left is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Markdown Preview
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 0
+
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
+
+" set to 1, the vim will refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
+
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be used in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
+
+" set to 1, preview server available to others in your network
+" by default, the server listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
+
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = 'brave'
+
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+" content_editable: if enable content editable for preview page, default: v:false
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false
+    \ }
+
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+" Preview Mappings
+nmap <leader>md <Plug>MarkdownPreviewToggle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " =>  Save Stuff
