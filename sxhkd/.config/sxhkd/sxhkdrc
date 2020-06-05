@@ -121,19 +121,19 @@ alt + r
 #
 
 # preselect the direction
-super + ctrl + {h,j,k,l}
+ctrl + super + {h,j,k,l}
     bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {1-9}
+ctrl + super + {1-9}
     bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
+ctrl + super + space
     bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + ctrl + shift + space
+ctrl + super + shift + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
@@ -156,7 +156,7 @@ super + alt + shift + {h,j,k,l}
 # change their dimensions, and (ii) to keep the script concise.
 
 # expand or contract node left, down, up, right
-alt + ctrl + {h,j,k,l}
+ctrl + alt + {h,j,k,l}
     {resize_bspwm.sh} {west,south,north,east}
 
 #
@@ -164,7 +164,7 @@ alt + ctrl + {h,j,k,l}
 #
 
 # move to next or previous desktop
-super + ctrl + {Left, Right}
+ctrl + super + {Left, Right}
     bspc desktop -f {prev,next}
 
 
@@ -209,13 +209,21 @@ alt + d
 alt + b
     brave
 
-# screenshot to clipboard
+# screenshot area to clipboard
 ctrl + super + alt + 3
-    ~/bin/screenshot_area.sh
+    screenshot_area.sh
 
-# screenshot fullscreen
+# screenshot area and save to ~/workspace/screenshots
+ctrl + alt + 3
+    screenshot_area_save.sh
+
+# screenshot fullscreen to clipboard
 ctrl + super + alt + 4
-    ~/bin/screenshot_fullscreen.sh
+    screenshot_fullscreen.sh
+
+# screenshot_full and save to ~/workspace/screenshots
+ctrl + alt + 4
+    screenshot_fullscreen_save.sh;
 
 # start/stop a gif recording of a selection, upload to 0x0.st and copy url to clipboard
 ctrl + super + alt + 5
@@ -239,11 +247,11 @@ ctrl + super + alt + 6
 #    bspc desktop -f {prev,next}
 
 # set random wallpaper and pywal
-super + ctrl + n
+ctrl + super + n
     random_image=$(ls ~/workspace/wallpapers/ | shuf -n 1); \
     random_backend=$(shuf -n 1 -e wal haishoku colorthief); \
     feh --bg-fill "$HOME/workspace/wallpapers/$random_image"; \
     eval "set -- $(sed 1d "$HOME/.fehbg")"; \
-    wal -qn -i $4 --backend $random_backend; \
+    wal -qn -i $4 ;\
     pkill dunst; \
     dunst &;
