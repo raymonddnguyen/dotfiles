@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for wallpaper in ~/workspace/wallpapers/*
+for wallpaper in $WALLPAPER_DIR*
 do
     for backend in wal haishoku colorthief
     do
