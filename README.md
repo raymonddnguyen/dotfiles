@@ -83,7 +83,8 @@ Just :PlugInstall and you're good to go!
 
 ### Navigation, Tips and Shortcuts
 
-* Press `super + F2` to view a list of maps to navigate and manipulate windows, take screenshots, create gifs, open applications, etc.
+* Run `generate_all_pywal_cache.sh` to generate json caches of all your wallpaper colorschemes for faster loading in the future. It should be included in your path if you're following my config. If not its in `~/bin`.
+* Press `super + F2` to view a list of keyboard maps to navigate and manipulate windows, take screenshots, create gifs, open applications, etc.
 * `ctrl + super + n` to quickly change wallpapers and colorschemes.
 * Left click the wifi module in `Polybar` to open `network manager dmenu` in `rofi`.
 * Left click the bluetooth (headphones) module in `Polybar` to connect devices.
