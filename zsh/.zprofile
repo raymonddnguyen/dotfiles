@@ -4,7 +4,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export LANG=en_US.UTF-8
 export NEOFETCH_IMAGE_DIR="$HOME/workspace/neofetch_images"
 export WALLPAPER_DIR="$HOME/workspace/wallpapers"
-export TERMINAL="kitty --config ~/.config/kitty/kitty_bspwm.conf"
 
 # Note: Need to edit $ZSH/lib/history.zsh if using oh-my-zsh
 export HISTFILESIZE=5000000

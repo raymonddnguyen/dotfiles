@@ -4,10 +4,10 @@
 
 # terminal emulator
 super + Return
-    $TERMINAL
+    kitty --config $HOME/.config/kitty/kitty_bspwm.conf
 
 ctrl + grave
-    $TERMINAL
+    kitty --config $HOME/.config/kitty/kitty_bspwm.conf
 
 # program launcher
 super + space
@@ -78,13 +78,20 @@ super + {p,b,comma,period}
     bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-# super + {_,shift + }c
 alt + n
     bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
 alt + bracket{left,right}
     bspc desktop -f {prev,next}.local
+
+# focus the next/previous occupied desktop in the current monitor
+alt + shift + bracket{left,right}
+    bspc desktop -f {prev,next}.occupied
+
+# move to next or previous desktop
+ctrl + super + {Left, Right}
+    bspc desktop -f {prev,next}
 
 # focus the last node/desktop
 alt + {grave,Tab}
@@ -162,15 +169,6 @@ super + alt + shift + {h,j,k,l}
 # expand or contract node left, down, up, right
 ctrl + alt + {h,j,k,l}
     {resize_bspwm.sh} {west,south,north,east}
-
-#
-# desktop
-#
-
-# move to next or previous desktop
-ctrl + super + {Left, Right}
-    bspc desktop -f {prev,next}
-
 
 #
 # volume and brightness
