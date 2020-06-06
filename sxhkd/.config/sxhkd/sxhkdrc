@@ -112,9 +112,13 @@ alt + shift + {Left,Right}
     bspc node --to-desktop {prev,next}; \
     bspc node --focus ${id}
 
-# rotate a node between vertical and horizontal
+# rotate a node clockwise 90 degrees
 alt + r
     bspc node @/ -R 90
+
+# rotate a node counterclockwise 90 degrees
+alt + shift + r
+    bspc node @/ -R -90
 
 #
 # preselect
