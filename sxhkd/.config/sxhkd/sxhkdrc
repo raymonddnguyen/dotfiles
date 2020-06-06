@@ -4,10 +4,10 @@
 
 # terminal emulator
 super + Return
-    kitty --config ~/.config/kitty/kitty_bspwm.conf
+    $TERMINAL
 
 ctrl + grave
-    kitty --config ~/.config/kitty/kitty_bspwm.conf
+    $TERMINAL
 
 # program launcher
 super + space
