@@ -80,6 +80,7 @@ Plug 'phanviet/vim-monokai-pro'
 Plug 'sheerun/vim-polyglot'
 Plug 'psliwka/vim-smoothie'
 Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -309,6 +310,15 @@ map <leader>nf :NERDTreeFind<cr>
 
 " Close vim if the only window left is nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Rooter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Change directory for non-project files to current file directory
+let g:rooter_change_directory_for_non_project_files = 'current'
+
+" Resolve Symbolic Links
+let g:rooter_resolve_links = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Markdown Preview
