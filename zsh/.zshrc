@@ -184,7 +184,9 @@ bindkey -M vivis 'y'  vi-visual-yank
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls='exa'
-alias cat='bat'
+alias neomutt='neomutt; cat /home/raymond/.cache/wal/sequences'
+alias ranger='ranger; cat /home/raymond/.cache/wal/sequences'
+#alias cat='bat'
 alias mv='mv -i'
 alias code='vscodium'
 alias open='xdg-open'
