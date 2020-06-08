@@ -51,17 +51,30 @@ super + F2
     cat ~/.config/sxhkd/sxhkdrc | awk '/^[a-z]/ && last \{print $0,"\t",last\} \{last=""\} /^#/\{last=$0\}' | column -t -s $'\t' | rofi -dmenu -no-show-icons -i -p "sxhkd"
 
 #
-# state/flags
+# state/flags and visibility
 #
 
 # set the window state
-alt + {t,shift + t,s,f}
-    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+alt + {t,shift + t,s}
+    bspc node -t {tiled,pseudo_tiled,floating}
+
+# toggle fullscreen
+alt + f
+    bspc node -t \~fullscreen
+
+# Show or hide polybar (enable-ipc = true; in polybar config)
+alt + p
+    {polybar-msg cmd hide, polybar-msg cmd show}
+
+# Toggle tiled nodes to hidden in current desktop
+alt + o
+    {toggle_hidden_nodes.sh} {hide, show}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
     bspc node -g {marked,locked,sticky,private}
 
+# turn on lockscreen
 ctrl + alt + x
     betterlockscreen -l dim
 
@@ -151,15 +164,6 @@ ctrl + super + shift + space
 # move/resize
 #
 
-# expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
-    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-
 # For floating windows one can use Alt + Right Mouse click to
 # drag/resize in the given direction (this works in other DEs as well,
 # such as MATE and Xfce).  I have not set the script to resize floating
@@ -167,7 +171,7 @@ super + alt + shift + {h,j,k,l}
 # change their dimensions, and (ii) to keep the script concise.
 
 # expand or contract node left, down, up, right
-ctrl + alt + {h,j,k,l}
+super + alt + {h,j,k,l}
     {resize_bspwm.sh} {west,south,north,east}
 
 #

@@ -69,6 +69,8 @@ wm-restack = bspwm
 border-size = 0
 border-color = ${color.white}
 
+enable-ipc = true
+
 [bar/bspwm]
 inherit = bar/base
 width = 35%
@@ -86,7 +88,6 @@ tray-position = right
 
 [bar/music]
 inherit = bar/base
-enable-ipc = true
 width = 28%
 
 foreground = ${color.color2}
