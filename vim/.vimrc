@@ -5,8 +5,7 @@
 set history=500
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -52,6 +51,9 @@ endif
 " Turn error bell off
 set noerrorbells
 
+" Relative linenumbers
+set relativenumber
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
@@ -81,11 +83,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'psliwka/vim-smoothie'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-rooter'
+Plug 'tmsvg/pear-tree'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }         "Need NodeJS and Yarn
+Plug 'honza/vim-snippets'
 
 " Initialize plugin system
 call plug#end()
@@ -220,9 +224,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Extensions
 " coc config
-let g:coc_global_extensions = ['coc-pairs', 'coc-json', 'coc-python',
+let g:coc_global_extensions = ['coc-sh', 'coc-json', 'coc-python',
             \ 'coc-css', 'coc-markdownlint', 'coc-yank', 'coc-clangd',
-            \ 'coc-cmake', 'coc-go', 'coc-rls', 'coc-sh']
+            \ 'coc-cmake', 'coc-go', 'coc-rust-analyzer', 'coc-snippets']
 
 " View yank list from coc-yank
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
@@ -230,6 +234,22 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 " Format selected text
 vmap <leader>p  <Plug>(coc-format-selected)
 nmap <leader>p  <Plug>(coc-format-selected)
+
+" Snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<C-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<C-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Change background of floating window to a darker color (gets overwritten by colorscheme)
 " highlight Pmenu ctermfg=NONE ctermbg=2 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -319,6 +339,48 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 
 " Resolve Symbolic Links
 let g:rooter_resolve_links = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Pear Tree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Default rules for matching:
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'},
+            \ '<': {'closer': '>', 'not_at': ['\s']}
+            \}
+" See pear-tree/after/ftplugin/ for filetype-specific matching rules
+
+" Pear Tree is enabled for all filetypes by default:
+let g:pear_tree_ft_disabled = []
+
+" Pair expansion is dot-repeatable by default:
+let g:pear_tree_repeatable_expand = 1
+
+" Turn on smart pairing
+let g:pear_tree_smart_openers = 0
+let g:pear_tree_smart_closers = 0
+let g:pear_tree_smart_backspace = 0
+
+" If enabled, smart pair functions timeout after 60ms:
+let g:pear_tree_timeout = 60
+
+" Automatically map <BS>, <CR>, and <Esc>
+let g:pear_tree_map_special_keys = 0
+
+" Default mappings:
+imap <BS> <Plug>(PearTreeBackspace)
+" imap <CR> <Plug>(PearTreeExpand)
+imap <Esc> <Plug>(PearTreeFinishExpansion)
+" Pear Tree also makes <Plug> mappings for each opening and closing string.
+"     :help <Plug>(PearTreeOpener)
+"     :help <Plug>(PearTreeCloser)
+
+" Move cursor past closing string
+imap <C-j> <Plug>(PearTreeJump)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Markdown Preview
@@ -564,6 +626,9 @@ map <leader>t<leader> :tabnext
 map gb :bn<cr>
 map gB :bp<cr>
 map <leader>bd :bd<cr>
+
+" Close all buffers
+map <leader>ba :1,1000 bd!<cr>
 
 """"""""""""""""""""""""""""""
 " => Status line

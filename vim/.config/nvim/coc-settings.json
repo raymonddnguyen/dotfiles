@@ -2,7 +2,7 @@
     // Schema for options: https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
     // :help coc.txt
     "suggest.maxCompleteItemCount": 20,
-    "suggest.noselect": false,
+    "suggest.noselect": true,
     "suggest.enablePreview": true,
     "suggest.removeDuplicateItems": true,
     "codeLens.enable": true,
@@ -31,5 +31,8 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     // Clangd config
-    "clangd.semanticHighlighting": true
+    "clangd.semanticHighlighting": true,
+    // Rust-Analyzer config
+    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+    "rust-analyzer.updates.channel": "nightly"
 }
