@@ -5,4 +5,5 @@ re:zero ovas
 read natenberg
 
 
-add image preview to fzf
+
+neomutt attachment send issue
