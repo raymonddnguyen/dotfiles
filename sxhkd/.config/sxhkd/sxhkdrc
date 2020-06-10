@@ -22,7 +22,7 @@ super + ctrl + Escape
 # bspwm hotkeys
 #
 
-# Focus the node in the given direction.
+# focus the node in the given direction.
 alt + {h,j,k,l}
     bspc node -f {west,south,north,east}
 
@@ -62,11 +62,11 @@ alt + {t,shift + t,s}
 alt + f
     bspc node -t \~fullscreen
 
-# Show or hide polybar (enable-ipc = true; in polybar config)
+# show or hide polybar (enable-ipc = true; in polybar config)
 alt + p
     {polybar-msg cmd hide, polybar-msg cmd show}
 
-# Toggle tiled nodes to hidden in current desktop
+# toggle tiled nodes to hidden in current desktop
 alt + o
     {toggle_hidden_nodes.sh} {hide, show}
 
@@ -243,14 +243,6 @@ ctrl + super + alt + 5
 ctrl + super + alt + 6
     { giph -y -s -l -c 0.3\,0\,0.5\,0.3 ~/workspace/videos/$(date +%s).gif, \
     killall -INT -g giph && notify-send "Giph" "Stopped Recording"}
-
-#
-# Touchpad
-#
-
-### Three finger swipe (left or right) to change desktop
-#@button{10,11}
-#    bspc desktop -f {prev,next}
 
 # set random wallpaper and pywal
 ctrl + super + n
