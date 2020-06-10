@@ -2,7 +2,7 @@
     // Schema for options: https://github.com/neoclide/coc.nvim/blob/master/data/schema.json
     // :help coc.txt
     "suggest.maxCompleteItemCount": 20,
-    "suggest.noselect": true,
+    "suggest.noselect": false,
     "suggest.enablePreview": true,
     "suggest.removeDuplicateItems": true,
     "codeLens.enable": true,

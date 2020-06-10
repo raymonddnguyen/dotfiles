@@ -35,9 +35,9 @@ nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Quickly insert an empty new line without entering insert mode
-nnoremap <space>o o<Esc>
-nnoremap <space>O O<Esc>
+" Quickly insert an empty new line without entering insert mode, below and above
+nnoremap <space>o o<Esc>k
+nnoremap <space>O O<Esc>j
 
 if exists(':tnoremap')
     " Disable Python 2 support
@@ -120,9 +120,14 @@ endif
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"             \ pumvisible() ? "\<C-n>" :
+"             \ <SID>check_back_space() ? "\<TAB>" :
+"             \ coc#refresh()
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -212,7 +217,7 @@ nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>O  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>S  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
@@ -236,20 +241,12 @@ vmap <leader>p  <Plug>(coc-format-selected)
 nmap <leader>p  <Plug>(coc-format-selected)
 
 " Snippets
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
 
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" Use <tab> for jump to next placeholder
+let g:coc_snippet_next = '<tab>'
 
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<C-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<C-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
+" Use Shift + <tab> for jump to previous placeholder
+let g:coc_snippet_prev = '<S-tab>'
 
 " Change background of floating window to a darker color (gets overwritten by colorscheme)
 " highlight Pmenu ctermfg=NONE ctermbg=2 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -361,9 +358,9 @@ let g:pear_tree_ft_disabled = []
 let g:pear_tree_repeatable_expand = 1
 
 " Turn on smart pairing
-let g:pear_tree_smart_openers = 0
+let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 0
-let g:pear_tree_smart_backspace = 0
+let g:pear_tree_smart_backspace = 1
 
 " If enabled, smart pair functions timeout after 60ms:
 let g:pear_tree_timeout = 60
