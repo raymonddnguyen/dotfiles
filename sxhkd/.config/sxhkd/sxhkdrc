@@ -6,6 +6,7 @@
 super + Return
     kitty --config $HOME/.config/kitty/kitty_bspwm.conf
 
+# alternative shortcut for terminal emulator
 ctrl + grave
     kitty --config $HOME/.config/kitty/kitty_bspwm.conf
 
