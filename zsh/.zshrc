@@ -2,11 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # pywal
-eval "set -- $(sed 1d "$HOME/.fehbg")"
-wal -i $4 > /dev/null 2>&1
+if [ -z $VIMRUNTIME ]; then
+    eval "set -- $(sed 1d "$HOME/.fehbg")"
+    wal -i $4 > /dev/null 2>&1
+fi
 
-# If not in a tmux session, run neofetch
-if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } then
+# If not in a tmux session or neovim terminal, run neofetch
+if ! { [ "$TERM" = "screen-256color" ] && [ -n "$TMUX" ]; } && [ -z $VIMRUNTIME ]; then
     # Neofetch with image
     random_image=$(ls $NEOFETCH_IMAGE_DIR | shuf -n 1)
     neofetch --source "$NEOFETCH_IMAGE_DIR/$random_image" --size 270px
@@ -82,7 +84,11 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode fzf)
+if [ -z $VIMRUNTIME ]; then
+    plugins=(git vi-mode fzf)
+else
+    plugins=(git vi-mode)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -188,7 +194,6 @@ alias neomutt='neomutt; cat /home/raymond/.cache/wal/sequences'
 alias ranger='ranger; cat /home/raymond/.cache/wal/sequences'
 #alias cat='bat'
 alias mv='mv -i'
-alias code='vscodium'
 alias open='xdg-open'
 alias t='todo.sh'
 alias kill-true-orphans="sudo pacman -Rns $(pacman -Qtdq)"
