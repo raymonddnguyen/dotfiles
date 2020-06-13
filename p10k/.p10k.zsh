@@ -82,7 +82,7 @@
     nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
     ranger                  # ranger shell (https://github.com/ranger/ranger)
     nnn                     # nnn shell (https://github.com/jarun/nnn)
-    vim_shell               # vim shell indicator (:sh)
+    # vim_shell               # vim shell indicator (:sh)
     midnight_commander      # midnight commander shell (https://midnight-commander.org/)
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
@@ -692,8 +692,8 @@
 
   ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
   # Vim shell indicator color.
-  # typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=0
-  # typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=2
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=0
+  typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=4
   # Custom icon.
   # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -1562,7 +1562,11 @@
   #   - verbose: Enable instant prompt and print a warning when detecting console output during
   #              zsh initialization. Choose this if you've never tried instant prompt, haven't
   #              seen the warning, or if you are unsure what this all means.
-  typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+  if [ -z $VIMRUNTIME ]; then
+      typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+  else
+      typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+  fi
 
   # Hot reload allows you to change POWERLEVEL9K options after Powerlevel10k has been initialized.
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload
