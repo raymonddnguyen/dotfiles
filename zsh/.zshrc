@@ -3,8 +3,7 @@
 
 # pywal
 if [ -z $VIMRUNTIME ]; then
-    eval "set -- $(sed 1d "$HOME/.fehbg")"
-    wal -i $4 > /dev/null 2>&1
+    cat ~/.cache/wal/sequences &
 fi
 
 # If not in a tmux session or neovim terminal, run neofetch
