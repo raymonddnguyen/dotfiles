@@ -701,6 +701,7 @@ if exists(':tnoremap')
 
     " Toggle the terminal with alt + enter
     nnoremap <silent> <M-cr> :call MonkeyTerminalToggle()<cr>a
+    inoremap <silent> <M-cr> <Esc>:call MonkeyTerminalToggle()<cr>a
     tnoremap <silent> <M-cr> <C-\><C-n>:call MonkeyTerminalToggle()<cr>
 endif
 
