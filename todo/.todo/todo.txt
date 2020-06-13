@@ -7,3 +7,4 @@ read natenberg
 
 
 neomutt attachment send issue
+test out alacritty
