@@ -8,3 +8,4 @@ read natenberg
 
 neomutt attachment send issue
 test out alacritty
+location list for coc.nvim not working?
