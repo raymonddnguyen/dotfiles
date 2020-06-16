@@ -1,0 +1,97 @@
+
+
+v  ["          *@:<C-U>exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")<CR>
+n  ["          *@:call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")<CR>
+v  []          *@m':<C-U>exe "normal! gv"|call search('^\s*endf\%[unction]\>', "bW")<CR>
+n  []          *@m':call search('^\s*endf\%[unction]\>', "bW")<CR>
+v  [[          *@m':<C-U>exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")<CR>
+n  [[          *@m':call search('^\s*fu\%[nction]\>', "bW")<CR>
+v  ]"          *@:<C-U>exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")<CR>
+n  ]"          *@:call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")<CR>
+v  ][          *@m':<C-U>exe "normal! gv"|call search('^\s*endf\%[unction]\>', "W")<CR>
+n  ][          *@m':call search('^\s*endf\%[unction]\>', "W")<CR>
+v  ]]          *@m':<C-U>exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")<CR>
+n  ]]          *@m':call search('^\s*fu\%[nction]\>', "W")<CR>
+v  <C-A>       * g<C-A>
+n  <C-B>         <Plug>(SmoothieBackwards)
+v  <C-C>         "+y
+n  <C-D>         <Plug>(SmoothieDownwards)
+n  <C-F>         <Plug>(SmoothieForwards)
+   <C-H>         <C-W>h
+   <NL>          <C-W>j
+   <C-K>         <C-W>k
+   <C-L>         <C-W>l
+x  <C-N>       * :<C-U>call multiple_cursors#new("v", 0)<CR>
+n  <C-N>       * :call multiple_cursors#new("n", 1)<CR>
+n  <C-U>         <Plug>(SmoothieUpwards)
+v  <C-V>         c<Esc>"+p
+v  <C-X>         "+c
+n  <Space>y    * :<C-U>CocList -A --normal yank<CR>
+n  <Space>p    * :<C-U>CocListResume<CR>
+n  <Space>k    * :<C-U>CocPrev<CR>
+n  <Space>j    * :<C-U>CocNext<CR>
+n  <Space>s    * :<C-U>CocList -I symbols<CR>
+n  <Space>S    * :<C-U>CocList outline<CR>
+n  <Space>c    * :<C-U>CocList commands<CR>
+n  <Space>e    * :<C-U>CocList extensions<CR>
+n  <Space>a    * :<C-U>CocList diagnostics<CR>
+n  <Space>O    * O<Esc>j
+n  <Space>o    * o<Esc>k
+o  %             <Plug>(MatchitOperationForward)
+x  %             <Plug>(MatchitVisualForward)
+n  %             <Plug>(MatchitNormalForward)
+n  ,L          * :QToggle<CR>
+n  ,l          * :LToggle<CR>
+   ,ba           :w<CR>:%bd<CR>:e#<CR>:bd#<CR>
+   ,bd           :bd<CR>
+   ,t,           :tabnext
+   ,tm           :tabmove
+   ,tc           :tabclose<CR>
+   ,to           :tabonly<CR>
+   ,tn           :tabnew<CR>
+   ,<CR>         :nohl<CR>
+v  ,x          * "+c
+v  ,y          * "+y
+n  ,md           <Plug>MarkdownPreviewToggle
+   ,nf           :NERDTreeFind<CR>
+   ,nb           :NERDTreeFromBookmark<Space>
+   ,nn           :NERDTreeToggle<CR>
+n  ,gf           :diffget //2<CR>
+n  ,gj           :diffget //3<CR>
+n  ,gs           :G<CR>
+n  ,fr         * :Rg<CR>
+n  ,fm         * :Marks<CR>
+n  ,fC         * :Colors<CR>
+n  ,fv         * :Commands<CR>
+n  ,fc         * :Commits<CR>
+
+
+E492: Not an editor command: maps!
+
+i  <Plug>(coc-snippets-expand-jump) * coc#_insert_key('request', 'snippets-expand-jump', 1)
+i  <Plug>(coc-snippets-expand) * coc#_insert_key('request', 'snippets-expand', 1)
+i  <Plug>CocRefresh * <C-R>=coc#_complete()<CR>
+i  <Plug>(fzf-maps-i) * <C-O>:call fzf#vim#maps('i', 0)<CR>
+i  <Plug>(fzf-complete-buffer-line) * fzf#vim#complete#buffer_line()
+i  <Plug>(fzf-complete-line) * fzf#vim#complete#line()
+i  <Plug>(fzf-complete-file-ag) * fzf#vim#complete#path('ag -l -g ""')
+i  <Plug>(fzf-complete-file) * fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed 's:^..::'")
+i  <Plug>(fzf-complete-path) * fzf#vim#complete#path("find . -path '*/\.*' -prune -o -print | sed '1d;s:^..::'")
+i  <Plug>(fzf-complete-word) * fzf#vim#complete#word()
+i  <Plug>ISurround * <C-R>=<SNR>18_insert(1)<CR>
+i  <Plug>Isurround * <C-R>=<SNR>18_insert()<CR>
+i  <M-CR>      * <Esc>:call MonkeyTerminalToggle()<CR>a
+i  <BS>          <Plug>(PearTreeBackspace)
+i  <C-Space>   * coc#refresh()
+i  <S-Tab>     * pumvisible() ? "\<C-P>" : "\<S-Tab>"
+i  <MiddleMouse>   <Nop>
+i  <C-G>S        <Plug>ISurround
+i  <C-G>s        <Plug>Isurround
+i  <Tab>       * pumvisible() ? "\<C-N>" : "\<Tab>"
+i  <NL>          <Plug>(PearTreeJump)
+i  <CR>        * complete_info()["selected"] != "-1" ? "\<C-Y>" : "\<C-G>u\<CR>"
+c  <C-R><C-G>  & fnameescape(fugitive#Object(@%))
+i  <C-S>         <Plug>Isurround
+i  <C-V>         <C-R><C-O>+
+i  <Esc>         <Plug>(PearTreeFinishExpansion)
+i  {<CR>       * {<CR>}<Esc>O<BS><Tab>

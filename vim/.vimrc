@@ -68,6 +68,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'wellle/targets.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -247,6 +248,9 @@ let g:coc_snippet_next = '<tab>'
 
 " Use Shift + <tab> for jump to previous placeholder
 let g:coc_snippet_prev = '<S-tab>'
+
+" Use location list of CocList when jump to locations
+let g:coc_enable_locationlist = 1
 
 " Change background of floating window to a darker color (gets overwritten by colorscheme)
 " highlight Pmenu ctermfg=NONE ctermbg=2 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -624,8 +628,8 @@ map gb :bn<cr>
 map gB :bp<cr>
 map <leader>bd :bd<cr>
 
-" Close all buffers
-map <leader>ba :1,1000 bd!<cr>
+" Save current buffer and close all other buffers
+map <silent> <leader>ba :w<cr>:%bd<cr>:e#<cr>:bd#<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Neovim Terminal

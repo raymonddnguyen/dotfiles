@@ -25,6 +25,7 @@
     ],
     // Valid options: ["edit", "split", "vsplit", "tabe", "drop", "tab drop"]
     "coc.preferences.jumpCommand": "edit",
+    //"coc.preferences.useQuickfixForLocations": true,
     // Python config
     "python.jediEnabled": false,
     "python.linting.enabled": true,
@@ -34,5 +35,9 @@
     "clangd.semanticHighlighting": true,
     // Rust-Analyzer config
     "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
-    "rust-analyzer.updates.channel": "nightly"
+    "rust-analyzer.updates.channel": "nightly",
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.completion.addCallParenthesis": false,
+    "rust-analyzer.cargo.allFeatures": true,
+    "rust-analyzer.diagnostics.enable": true
 }
