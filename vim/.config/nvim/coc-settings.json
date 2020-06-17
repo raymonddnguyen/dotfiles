@@ -26,6 +26,8 @@
     // Valid options: ["edit", "split", "vsplit", "tabe", "drop", "tab drop"]
     "coc.preferences.jumpCommand": "edit",
     //"coc.preferences.useQuickfixForLocations": true,
+    // Yank config
+    "yank.enableCompletion": false,
     // Python config
     "python.jediEnabled": false,
     "python.linting.enabled": true,

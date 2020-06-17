@@ -40,7 +40,7 @@ nnoremap <space>o o<Esc>k
 nnoremap <space>O O<Esc>j
 
 " Quickly add spacing between functions and insert in the middle
-nnoremap <leader>o o<Esc>o<Esc>ki
+nnoremap <leader>o o<Esc>ko
 
 if exists(':tnoremap')
     " Disable Python 2 support
