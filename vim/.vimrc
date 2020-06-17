@@ -12,7 +12,7 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
+let mapleader=","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -39,13 +39,16 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <space>o o<Esc>k
 nnoremap <space>O O<Esc>j
 
+" Quickly add spacing between functions and insert in the middle
+nnoremap <leader>o o<Esc>o<Esc>ki
+
 if exists(':tnoremap')
     " Disable Python 2 support
-    let g:loaded_python_provider = 0
+    let g:loaded_python_provider=0
     " Disable Ruby support
-    let g:loaded_ruby_provider = 0
+    let g:loaded_ruby_provider=0
     " Disable Node.js support
-    let g:loaded_node_provider = 0
+    let g:loaded_node_provider=0
 endif
 
 " Turn error bell off
@@ -101,7 +104,7 @@ call plug#end()
 " TextEdit might fail if hidden is not set.
 set hidden
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" Having longer updatetime (default is 4000 ms=4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
 
@@ -131,7 +134,7 @@ inoremap <silent><expr> <TAB>
 "             \ coc#refresh()
 
 function! s:check_back_space() abort
-    let col = col('.') - 1
+    let col=col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
@@ -230,7 +233,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Extensions
 " coc config
-let g:coc_global_extensions = ['coc-sh', 'coc-json', 'coc-python',
+let g:coc_global_extensions=['coc-sh', 'coc-json', 'coc-python',
             \ 'coc-css', 'coc-markdownlint', 'coc-yank', 'coc-clangd',
             \ 'coc-cmake', 'coc-go', 'coc-rust-analyzer', 'coc-snippets']
 
@@ -244,13 +247,13 @@ nmap <leader>p  <Plug>(coc-format-selected)
 " Snippets
 
 " Use <tab> for jump to next placeholder
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next='<tab>'
 
 " Use Shift + <tab> for jump to previous placeholder
-let g:coc_snippet_prev = '<S-tab>'
+let g:coc_snippet_prev='<S-tab>'
 
 " Use location list of CocList when jump to locations
-let g:coc_enable_locationlist = 1
+let g:coc_enable_locationlist=1
 
 " Change background of floating window to a darker color (gets overwritten by colorscheme)
 " highlight Pmenu ctermfg=NONE ctermbg=2 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
@@ -304,7 +307,7 @@ nnoremap <leader>fr :Rg<cr>
 " Git status
 nmap <leader>gs :G<CR>
 
-" For merge conflicts, 2 = left, 3 = right
+" For merge conflicts, 2=left, 3=right
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
@@ -312,18 +315,18 @@ nmap <leader>gf :diffget //2<CR>
 " => ListToggle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Toggle for location list and quickfix
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>L'
+let g:lt_location_list_toggle_map='<leader>l'
+let g:lt_quickfix_list_toggle_map='<leader>L'
 
 " Set height
-" let g:lt_height = 10
+" let g:lt_height=10
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos="right"
 let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let NERDTreeIgnore=['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
@@ -336,16 +339,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " => Vim Rooter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change directory for non-project files to current file directory
-let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_change_directory_for_non_project_files='current'
 
 " Resolve Symbolic Links
-let g:rooter_resolve_links = 1
+let g:rooter_resolve_links=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pear Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Default rules for matching:
-let g:pear_tree_pairs = {
+let g:pear_tree_pairs={
             \ '(': {'closer': ')'},
             \ '[': {'closer': ']'},
             \ '{': {'closer': '}'},
@@ -356,26 +359,26 @@ let g:pear_tree_pairs = {
 " See pear-tree/after/ftplugin/ for filetype-specific matching rules
 
 " Pear Tree is enabled for all filetypes by default:
-let g:pear_tree_ft_disabled = []
+let g:pear_tree_ft_disabled=[]
 
 " Pair expansion is dot-repeatable by default:
-let g:pear_tree_repeatable_expand = 1
+let g:pear_tree_repeatable_expand=1
 
 " Turn on smart pairing
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 0
-let g:pear_tree_smart_backspace = 1
+let g:pear_tree_smart_openers=1
+let g:pear_tree_smart_closers=0
+let g:pear_tree_smart_backspace=1
 
 " If enabled, smart pair functions timeout after 60ms:
-let g:pear_tree_timeout = 60
+let g:pear_tree_timeout=60
 
 " Automatically map <BS>, <CR>, and <Esc>
-let g:pear_tree_map_special_keys = 0
+let g:pear_tree_map_special_keys=0
 
 " Default mappings:
 imap <BS> <Plug>(PearTreeBackspace)
 " imap <CR> <Plug>(PearTreeExpand)
-imap <Esc> <Plug>(PearTreeFinishExpansion)
+" imap <Esc> <Plug>(PearTreeFinishExpansion)
 " Pear Tree also makes <Plug> mappings for each opening and closing string.
 "     :help <Plug>(PearTreeOpener)
 "     :help <Plug>(PearTreeCloser)
@@ -388,32 +391,32 @@ imap <C-j> <Plug>(PearTreeJump)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
-let g:mkdp_auto_start = 0
+let g:mkdp_auto_start=0
 
 " set to 1, the nvim will auto close current preview window when change
 " from markdown buffer to another buffer
 " default: 1
-let g:mkdp_auto_close = 1
+let g:mkdp_auto_close=1
 
 " set to 1, the vim will refresh markdown when save the buffer or
 " leave from insert mode, default 0 is auto refresh markdown as you edit or
 " move the cursor
 " default: 0
-let g:mkdp_refresh_slow = 0
+let g:mkdp_refresh_slow=0
 
 " set to 1, the MarkdownPreview command can be use for all files,
 " by default it can be used in markdown file
 " default: 0
-let g:mkdp_command_for_global = 0
+let g:mkdp_command_for_global=0
 
 " set to 1, preview server available to others in your network
 " by default, the server listens on localhost (127.0.0.1)
 " default: 0
-let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_to_the_world=0
 
 " specify browser to open preview page
 " default: ''
-let g:mkdp_browser = 'brave'
+let g:mkdp_browser='brave'
 
 " options for markdown render
 " mkit: markdown-it options for render
@@ -428,7 +431,7 @@ let g:mkdp_browser = 'brave'
 " hide_yaml_meta: if hide yaml metadata, default is 1
 " sequence_diagrams: js-sequence-diagrams options
 " content_editable: if enable content editable for preview page, default: v:false
-let g:mkdp_preview_options = {
+let g:mkdp_preview_options={
     \ 'mkit': {},
     \ 'katex': {},
     \ 'uml': {},
@@ -443,7 +446,7 @@ let g:mkdp_preview_options = {
 
 " preview page title
 " ${name} will be replace with the file name
-let g:mkdp_page_title = '「${name}」'
+let g:mkdp_page_title='「${name}」'
 
 " Preview Mappings
 nmap <leader>md <Plug>MarkdownPreviewToggle
@@ -523,15 +526,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Set cursor to thin line in insert mode
 if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+    let &t_SI="\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI="\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
 else
-    let &t_SI = "\e[5 q"
-    let &t_EI = "\e[2 q"
+    let &t_SI="\e[5 q"
+    let &t_EI="\e[2 q"
 endif
 
 " Linux: open browser with xdg-open using gx under cursor
-let g:netrw_browsex_viewer= "xdg-open"
+let g:netrw_browsex_viewer="xdg-open"
 
 " Set windows to open below
 set splitbelow
@@ -602,6 +605,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Make it so that a curly brace automatically inserts an indented line
+" Use this instead of pear-tree because it does not mess up undo
 inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -641,10 +645,10 @@ if exists(':tnoremap')
     " With this function you can reuse the same terminal in neovim.
     " You can toggle the terminal and also send a command to the same terminal.
     " Taken and modified from: https://gist.github.com/ram535/b1b7af6cd7769ec0481eb2eed549ea23
-    let s:monkey_terminal_window = -1
-    let s:monkey_terminal_buffer = -1
-    let s:monkey_terminal_job_id = -1
-    let s:monkey_terminal_current_dir = ""
+    let s:monkey_terminal_window=-1
+    let s:monkey_terminal_buffer=-1
+    let s:monkey_terminal_job_id=-1
+    let s:monkey_terminal_current_dir=""
 
     function! MonkeyTerminalOpen()
         " Check if buffer exists, if not create a window and a buffer
@@ -653,14 +657,14 @@ if exists(':tnoremap')
             new monkey_terminal
             " Moves to the window below the current one
             wincmd J
-            let s:monkey_terminal_job_id = termopen($SHELL, { 'detach': 1 })
+            let s:monkey_terminal_job_id=termopen($SHELL, { 'detach': 1 })
 
             " Change the name of the buffer to "Terminal 1"
             silent file Terminal\ 1
             " Gets the id of the terminal window
-            let s:monkey_terminal_window = win_getid()
-            let s:monkey_terminal_buffer = bufnr('%')
-            let s:monkey_terminal_current_dir = getcwd()
+            let s:monkey_terminal_window=win_getid()
+            let s:monkey_terminal_buffer=bufnr('%')
+            let s:monkey_terminal_current_dir=getcwd()
 
             " The buffer of the terminal won't appear in the list of the buffers
             " when calling :buffers command
@@ -672,11 +676,11 @@ if exists(':tnoremap')
                 wincmd J
                 buffer Terminal\ 1
                 " Gets the id of the terminal window
-                let s:monkey_terminal_window = win_getid()
+                let s:monkey_terminal_window=win_getid()
 
                 "Change project directory to current buffer's project directory (requires vim-rooter)
                 if s:monkey_terminal_current_dir != getcwd()
-                    let s:monkey_terminal_current_dir = getcwd()
+                    let s:monkey_terminal_current_dir=getcwd()
                     call chansend(s:monkey_terminal_job_id, "cd ")
                     call chansend(s:monkey_terminal_job_id, s:monkey_terminal_current_dir)
                     call chansend(s:monkey_terminal_job_id, "\n")
@@ -690,7 +694,7 @@ if exists(':tnoremap')
             call MonkeyTerminalClose()
         else
             " Resize terminal window to be 1/3 of main window
-            let s:main_window_height = winheight(0) * 1/3
+            let s:main_window_height=winheight(0) * 1/3
             call MonkeyTerminalOpen()
             exe 'resize' s:main_window_height
         endif
@@ -722,47 +726,47 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " => Airline status bar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically displays all buffers when there's only one tab open.
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled=1
 
 " Enable Powerline fonts
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
 
 " The separator used on the left side
-"let g:airline_left_sep = '>'
+"let g:airline_left_sep='>'
 
 " The separator used on the right side
-"let g:airline_right_sep = '<'
+"let g:airline_right_sep='<'
 
 " Enable modified detection
-let g:airline_detect_modified = 1
+let g:airline_detect_modified=1
 
 " Enable paste detection
-let g:airline_detect_paste = 1
+let g:airline_detect_paste=1
 
 " Enable crypt detection
-let g:airline_detect_crypt = 1
+let g:airline_detect_crypt=1
 
 " Enable spell detection
-let g:airline_detect_spell = 1
+let g:airline_detect_spell=1
 
 " Display spelling language when spell detection is enabled (if enough space is available)
-let g:airline_detect_spelllang = 1
+let g:airline_detect_spelllang=1
 
 " Enable iminsert detection
-let g:airline_detect_iminsert = 0
+let g:airline_detect_iminsert=0
 
 " Determine whether inactive windows should have the left section collapsed to only the filename of that buffer.
-" let g:airline_inactive_collapse = 1
+" let g:airline_inactive_collapse=1
 
 " Use alternative seperators for the statusline of inactive windows
-" let g:airline_inactive_alt_sep = 1
+" let g:airline_inactive_alt_sep=1
 
 " Themes are automatically selected based on the matching colorscheme. this can be overridden by defining a value.
 " For powerline theme, need to manually add it to airline theme plugin folder
-let g:airline_theme = 'powerlineish'
+let g:airline_theme='powerlineish'
 
 " Enable/disable COC.nvim error/warning display
-" let g:airline#extensions#coc#enabled = 0
+" let g:airline#extensions#coc#enabled=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on
