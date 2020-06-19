@@ -2,7 +2,7 @@
 
 [global]
     # Middle between bars
-    #geometry = "300x1-790+10" 
+    #geometry = "300x1-790+10"
     # Top right below bar
     #geometry = "285x1-8+65"
     # Top right below bar, but less wide
@@ -18,14 +18,14 @@
     # Add vertical padding to the inside of the notification
     # same size as polybar blocks
     #padding = 13
-    padding = 13 
+    padding = 13
 
     # Add horizontal padding for when the text gets long enough
-    horizontal_padding = 15 
+    horizontal_padding = 15
 
     # The frame color and width of the notification
     frame_color = "#ffffff"
-    frame_width = 0 
+    frame_width = 0
 
     # How long a user needs to be idle for sticky notifications
     idle_threshold = 120
@@ -49,7 +49,7 @@
     markup = full
 
     # Icons
-    # left, right or off; off disables the icon 
+    # left, right or off; off disables the icon
     icon_position = left
     max_icon_size = 50
     icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/32x32/apps/:/usr/share/icons/Papirus-Dark/symbolic/status/
@@ -57,7 +57,7 @@
     # browser
     browser = /usr/bin/brave
 
-    # Disable indicators like (A) [action to open app] or (U) [open url] 
+    # Disable indicators like (A) [action to open app] or (U) [open url]
     show_indicators = no
 
     # Ignore new lines
@@ -74,10 +74,11 @@
     line_height = 4
 
 # These are the keybindings used to control dunst notifications
+# Keyboard shortcuts are defined in the following format: "Modifier+key" where the modifier is one of ctrl,mod1,mod2,mod3,mod4 and key is any keyboard key.
 [shortcuts]
-    close = ctrl+alt+space
+    close = ctrl+mod1+space
     close_all = ctrl+shift+space
-    history = ctrl+h
+    history = ctrl+mod1+h
 
 # Set the background and foreground (text) color for all notifications
 [urgency_low]
