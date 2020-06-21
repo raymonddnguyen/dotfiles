@@ -552,6 +552,7 @@ function! AdaptColorscheme()
     highlight SpecialKey ctermbg=none
     highlight VertSplit ctermbg=none
     highlight SignColumn ctermbg=none
+    highlight CursorLineNr ctermbg=none
 endfunction
 
 autocmd ColorScheme * call AdaptColorscheme()
