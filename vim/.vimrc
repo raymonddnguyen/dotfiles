@@ -628,10 +628,11 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
 
-" Buffer movement and delete
+" Buffer next, previous, delete and switch to last open buffer
 map gb :bn<cr>
 map gB :bp<cr>
 map <leader>bd :bd<cr>
+map g<tab> :b#<cr>
 
 " Save current buffer and close all other buffers
 map <silent> <leader>ba :w<cr>:%bd<cr>:e#<cr>:bd#<cr>
