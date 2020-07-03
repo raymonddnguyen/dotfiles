@@ -7,6 +7,7 @@ xsetroot -cursor_name left_ptr &                                            # ke
 libinput-gestures-setup restart &                                           # three-finger swipe for desktop switching
 fc-cache &                                                                  # reload font cache for polybar
 xbindkeys &                                                                 # disable middle mouse button paste
+xset -b &                                                                   # disable errorbell
 
 bspc monitor -d I II III IV V
 
