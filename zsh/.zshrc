@@ -189,7 +189,7 @@ bindkey -M vivis 'y'  vi-visual-yank
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls='exa'
-alias neomutt='neomutt; cat /home/raymond/.cache/wal/sequences'
+alias neomutt="TERM=screen-256color neomutt"
 alias ranger='ranger; cat /home/raymond/.cache/wal/sequences'
 #alias cat='bat'
 alias mv='mv -i'

@@ -65,6 +65,7 @@ mkdir -p ~/.config/beautiful-discord
 ln -s ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 ln -s ~/.cache/wal/zathurarc ~/.config/zathura/zathurarc
 ln -s ~/.cache/wal/discord_pywal.css ~/.config/beautiful-discord/discord_pywal.css
+ln -s ~/.cache/wal/colors.Xresources ~/.Xresources
 ```
 
 Use `beautifuldiscord` to change Discord's colors.
