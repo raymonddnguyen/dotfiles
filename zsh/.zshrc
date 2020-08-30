@@ -196,6 +196,9 @@ alias mv='mv -i'
 alias open='xdg-open'
 alias t='todo.sh'
 alias kill-true-orphans="sudo pacman -Rns $(pacman -Qtdq)"
+# qwerty/dvorak switch for tty/console 
+alias asdf="loadkeys dvorak"
+alias aoeu="loadkeys us"
 
 # Use nvim instead of vim when available
 if type nvim > /dev/null 2>&1; then
