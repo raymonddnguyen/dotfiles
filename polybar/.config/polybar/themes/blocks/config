@@ -113,7 +113,58 @@ padding-right = 0
 offset-x = 80.77%
 
 # pulseaudio
-modules-left = bluetooth battery time power
+modules-left = bluetooth battery time
+modules-right = power
+
+[bar/bspwm2]
+monitor = DP-2
+inherit = bar/base
+width = 35%
+
+foreground = ${color.color1}
+
+offset-x = 10
+
+; wsnumber
+modules-left = bspwm xwindow
+
+; display app icons
+tray-position = right
+
+
+[bar/music2]
+monitor = DP-2
+inherit = bar/base
+width = 28%
+
+foreground = ${color.color2}
+offset-x = 55.5%
+
+; Spotify (script at github.com/dietervanhoof/polybar-spotify-controls)
+;modules-left = previous playpause next spotify
+; Mpd
+modules-left = mpd
+
+[bar/misc2]
+monitor = DP-2
+inherit = bar/base
+width = 17.9%
+offset-x = 61.8%
+modules-left = backlight alsa network
+
+[bar/tray2]
+monitor = DP-2
+inherit = bar/base
+width = 18.7%
+
+padding-right = 0
+; 84%
+offset-x = 80.77%
+
+# pulseaudio
+modules-left = bluetooth battery time
+modules-right = power
+
 
 ;                      _       _
 ;  _ __ ___   ___   __| |_   _| | ___  ___
@@ -213,10 +264,9 @@ label-urgent-foreground = ${color.background}
 
 [module/power]
 type = custom/text
-content = 
+content = "     "
 content-foreground = ${color.color3}
 click-left = clearine
-;content padding = 4
 
 [module/mpd]
 type = internal/mpd
@@ -262,7 +312,7 @@ time = "%I:%M %p"
 date = "%d %b"
 
 label = %date%, %time%
-label-padding-right = 11
+label-padding-right = 10
 label-foreground = ${color.color3}
 label-background = ${color.background}
 
