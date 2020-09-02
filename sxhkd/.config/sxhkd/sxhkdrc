@@ -95,12 +95,20 @@ super + {p,b,comma,period}
 alt + n
     bspc node -f {next,prev}.local
 
-# focus the next/previous desktop in the current monitor
 alt + bracket{left,right}
+# cycle to the prev/next desktop for all monitors
+    cycle_dir={prev,next}; \
+    bspc desktop "$\{cycle_dir\}.local" -f; \
+    for mon_id in $(bspc query -M -m '.!focused'); do \
+        bspc desktop "$\{mon_id\}:focused#$\{cycle_dir\}.local" -a; \
+    done
+
+# focus the next/previous desktop in the current monitor
+ctrl + bracket{left,right}
     bspc desktop -f {prev,next}.local
 
-# focus the next/previous occupied desktop in the current monitor
-alt + shift + bracket{left,right}
+# focus the next/previous occupied desktop
+ctrl + shift + bracket{left,right}
     bspc desktop -f {prev,next}.occupied
 
 # move to next or previous desktop
@@ -116,6 +124,12 @@ super + {o,i}
     bspc wm -h off; \
     bspc node {older,newer} -f; \
     bspc wm -h on
+
+# send current focused node to the prev/next monitor and focus (TODO)
+alt + shift + bracket{left,right}
+    id=$(bspc query --nodes --node); \
+    bspc node --to-monitor {prev,next} --follow \
+    bspc node -f ${id}
 
 # focus or send to the given desktop
 alt + {_,super + }{1-9,0}
