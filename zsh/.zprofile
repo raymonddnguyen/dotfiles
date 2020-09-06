@@ -38,3 +38,8 @@ export FZF_CTRL_T_OPTS="--ansi --preview-window 'right:60%' --preview '([ -d {} 
 
 # For fzf completion and keybindings (oh-my-zsh)
 export FZF_BASE=/usr/local/bin/fzf
+
+# Autostart X at login
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+fi
