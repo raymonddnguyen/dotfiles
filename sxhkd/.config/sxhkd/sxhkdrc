@@ -83,7 +83,7 @@ ctrl + alt + x
 # focus/swap
 #
 
-# focus the node in the given direction
+# focus/swap the node in the given direction
 alt + {_,shift + }{h,j,k,l}
     bspc node -{f,s} {west,south,north,east}
 
