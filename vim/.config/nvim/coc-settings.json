@@ -29,10 +29,13 @@
     // Yank config
     "yank.enableCompletion": false,
     // Python config
-    "python.jediEnabled": false,
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.stubPath": "typings",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.pythonPath": "python",
+    "python.analysis.useLibraryCodeForTypes": true,
     // Clangd config
     "clangd.semanticHighlighting": true,
     // Rust-Analyzer config
