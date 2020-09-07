@@ -94,6 +94,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }         "Need NodeJS and Yarn
 Plug 'honza/vim-snippets'
+Plug 'nvim-treesitter/nvim-treesitter'                                          "Requires neovim-nightly
 
 " Initialize plugin system
 call plug#end()
@@ -233,8 +234,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Extensions
 " coc config
-let g:coc_global_extensions=['coc-sh', 'coc-json', 'coc-python',
-            \ 'coc-css', 'coc-markdownlint', 'coc-yank', 'coc-clangd',
+let g:coc_global_extensions=['coc-sh', 'coc-json', 'coc-python', 'coc-css',
+            \ 'coc-markdownlint', 'coc-yank', 'coc-clangd', 'coc-omnisharp',
             \ 'coc-cmake', 'coc-go', 'coc-rust-analyzer', 'coc-snippets']
 
 " View yank list from coc-yank
@@ -300,6 +301,32 @@ nnoremap <leader>fC :Colors<cr>
 nnoremap <leader>fm :Marks<cr>
 " Ripgrep search result (ALT-A to select all, ALT-D to deselect all)
 nnoremap <leader>fr :Rg<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => nvim-treesitter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",     -- one of "all", "language", or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  refactor = {
+    highlight_definition = { enable = true },
+    navigation = { enable = true },
+  },
+  textobjects = { enable = true },
+}
+EOF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fugitive
