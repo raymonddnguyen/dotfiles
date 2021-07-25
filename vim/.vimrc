@@ -773,7 +773,7 @@ let g:airline_powerline_fonts=1
 let g:airline_detect_modified=1
 
 " Enable paste detection
-let g:airline_detect_paste=1
+let g:airline_detect_paste=0
 
 " Enable crypt detection
 let g:airline_detect_crypt=1
