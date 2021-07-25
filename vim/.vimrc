@@ -57,6 +57,9 @@ set noerrorbells
 " Relative linenumbers
 set relativenumber
 
+" Set paste by default
+set paste
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
