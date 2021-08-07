@@ -131,7 +131,6 @@ modules-left = bspwm xwindow
 ; display app icons
 tray-position = right
 
-
 [bar/music2]
 monitor = DP-2
 inherit = bar/base
@@ -165,6 +164,44 @@ offset-x = 80.77%
 modules-left = bluetooth battery time
 modules-right = power
 
+[bar/bspwmvertical]
+monitor = DP-2
+inherit = bar/base
+width = 35%
+
+foreground = ${color.color1}
+
+offset-x = 10
+
+; wsnumber
+modules-left = bspwm xwindow
+
+; display app icons
+tray-position = right
+
+[bar/trayvertical]
+monitor = DP-2
+inherit = bar/base
+width = 30.0%
+
+padding-right = 0
+offset-x = 69.00%
+
+# pulseaudio
+modules-left = bluetooth battery time
+modules-right = power
+
+[bar/bspwmlaptop]
+monitor = eDP-1
+inherit = bar/bspwm
+
+[bar/misclaptop]
+monitor = eDP-1
+inherit = bar/misc
+
+[bar/traylaptop]
+monitor = eDP-1
+inherit = bar/tray
 
 ;                      _       _
 ;  _ __ ___   ___   __| |_   _| | ___  ___
