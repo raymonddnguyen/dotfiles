@@ -234,6 +234,10 @@ alt + b
 ctrl + super + alt + 3
     screenshot_area.sh
 
+# screenshot area to clipboard
+super + shift + s
+    screenshot_area.sh
+
 # screenshot area and save to ~/workspace/screenshots
 ctrl + alt + 3
     screenshot_area_save.sh
