@@ -13,11 +13,19 @@ xset -b &                                                                   # di
 thunderbolt_dir=/sys/devices/pci0000:00/0000:00:1d.4/0000:03:00.0/0000:04:00.0/0000:05:00.0/domain0/0-0/0-1
 
 if [[ -d $thunderbolt_dir ]]; then
-    # need to remove laptop monitor
-    bspc monitor eDP-1 -r
-    bspc monitor DP-1 -d I II III IV V
-    bspc monitor DP-2 -d VI VII VIII IX X
-    autorandr -c
+    # Use laptop monitor if veritical monitor is present
+    if xrandr -q | rg -i 'dp-2 connected 1440' &>/dev/null; then
+        bspc monitor DP-1 -d I II III IV V
+        bspc monitor DP-2 -d VI VII VIII IX X
+        bspc monitor eDP-1 -d XI XI XIII XIV XV
+        autorandr -c
+    else
+        # need to remove laptop monitor
+        bspc monitor eDP-1 -r
+        bspc monitor DP-1 -d I II III IV V
+        bspc monitor DP-2 -d VI VII VIII IX X
+        autorandr -c
+    fi
 else
     bspc monitor -d I II III IV V
 fi
