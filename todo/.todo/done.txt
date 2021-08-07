@@ -16,3 +16,8 @@ x 2020-05-25 switch to neovim
 x 2020-05-28 switch to coc.nvim instead of YCM
 x 2020-06-04 update dotfiles README
 x 2020-06-22 test out alacritty
+x 2021-08-07 remind lannhu about getmypayment address
+x 2021-08-07 renter's insurance
+x 2021-08-07 aoc
+x 2021-08-07 re:zero ovas
+x 2021-08-07 neomutt attachment send issue

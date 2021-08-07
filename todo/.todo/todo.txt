@@ -1,9 +1,4 @@
 uninstall kde?
 OS 3 easy pieces
-remind lannhu about getmypayment address
-re:zero ovas
 read natenberg
-neomutt attachment send issue
 location list for coc.nvim not working?
-aoc
-renter's insurance
