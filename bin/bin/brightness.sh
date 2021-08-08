@@ -23,7 +23,7 @@ function send_notification {
     # Send the notification
 
     local formatted_line=$(printf "%-*s%s" $((${padlimit} - ${#brightness})) "$brightness" "$bar")
-    notify-send.sh -i "$icon" -t 2000 -r 5555 -u normal "$formatted_line"   #-h int:value:"$brightness" -h string:synchronous:"$bar"
+    dunstify -i "$icon" -t 2000 -r 5555 -u normal "$formatted_line"   #-h int:value:"$brightness" -h string:synchronous:"$bar"
 }
 
 case $1 in

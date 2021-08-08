@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# IMPORTANT: Install notify-send.sh and faba-icon-theme from AUR
+# IMPORTANT: Install dunstify and faba-icon-theme from AUR
 # You can call this script like this:
 # $./volume.sh up
 # $./volume.sh down
@@ -35,9 +35,9 @@ function send_notification {
 
     # Send the notification
     if [ "$volume" != 0 ]; then
-        notify-send.sh "$formatted_line" -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"$bar" --replace=555
+        dunstify "$formatted_line" -i "$icon_name" -t 2000 -h int:value:"$volume" -h string:synchronous:"$bar" --replace=555
     else
-        notify-send.sh "$volume" -i "$icon_name" -t 2000 -h int:value:"$volume" --replace=555
+        dunstify "$volume" -i "$icon_name" -t 2000 -h int:value:"$volume" --replace=555
     fi
 }
 
@@ -58,7 +58,7 @@ case $1 in
         # Toggle mute
         amixer -D pulse set Master 1+ toggle > /dev/null
         if is_mute ; then
-            notify-send.sh -i "${icon_path}notification-audio-volume-muted.svg" --replace=555 -u normal "Mute" -t 2000
+            dunstify -i "${icon_path}notification-audio-volume-muted.svg" --replace=555 -u normal "Mute" -t 2000
         else
             send_notification
         fi
