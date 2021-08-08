@@ -44,6 +44,11 @@ fi
 #exec bspwm
 
 # picom &
+
+# detect monitors
+xrandr --dpi 210
+autorandr -c
+
 # Here bspwm is kept as default
 session=${1:-bspwm}
 
@@ -54,3 +59,4 @@ case $session in
     # No known session, try to run it as command
     *                 ) exec $1;;
 esac
+
