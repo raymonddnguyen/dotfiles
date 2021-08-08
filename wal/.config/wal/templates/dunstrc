@@ -7,7 +7,9 @@
     #geometry = "285x1-8+65"
     # Top right below bar, but less wide
     #geometry = "200x1-8+65"
+    # Top right below bar with no vertical monitor dpi bullshit
     geometry = 445x2-8+65
+    #geometry = 830x2-8+65
 
     # Shrink width if text is shorter than width
     shrink = no
@@ -31,7 +33,7 @@
     idle_threshold = 120
 
     # Font and typography settings
-    font = Fira Mono 11
+    font = Fira Mono 5
     alignment = left
     #word_wrap = yes
 
@@ -72,6 +74,12 @@
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
     line_height = 4
+
+    # Don't show progress bar
+    progress_bar_height = 0
+    progress_bar_min_width = 0
+    progress_bar_max_width = 0
+    progress_bar_frame_width = 0
 
 # These are the keybindings used to control dunst notifications
 # Keyboard shortcuts are defined in the following format: "Modifier+key" where the modifier is one of ctrl,mod1,mod2,mod3,mod4 and key is any keyboard key.
