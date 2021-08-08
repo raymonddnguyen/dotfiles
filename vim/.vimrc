@@ -60,6 +60,21 @@ set relativenumber
 " Set paste by default
 set paste
 
+" Undo breakpoints
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ! !<C-g>u
+inoremap ? ?<C-g>u
+
+" Jumplist mutation for relative jumps
+nnoremap <expr> k (v:count > 5 ? "m'" .v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" .v:count : "") . 'j'
+
+" Keep jumps centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins,
 " :PlugInstall to install plugins, :PlugUpdate to update or install
