@@ -5,6 +5,7 @@
     "suggest.noselect": false,
     "suggest.enablePreview": true,
     "suggest.removeDuplicateItems": true,
+    "suggest.autoTrigger": "always",
     "codeLens.enable": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
@@ -39,7 +40,7 @@
     // Clangd config
     "clangd.semanticHighlighting": true,
     // Rust-Analyzer config
-    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
     "rust-analyzer.updates.channel": "nightly",
     "rust-analyzer.checkOnSave.command": "clippy",
     "rust-analyzer.completion.addCallParenthesis": false,
