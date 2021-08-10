@@ -57,9 +57,6 @@ set noerrorbells
 " Relative linenumbers
 set relativenumber
 
-" Set paste by default
-set paste
-
 " Undo breakpoints
 inoremap , ,<C-g>u
 inoremap . .<C-g>u
@@ -112,7 +109,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }         "Need NodeJS and Yarn
 Plug 'honza/vim-snippets'
-Plug 'nvim-treesitter/nvim-treesitter'                                          "Requires neovim-nightly
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " Initialize plugin system
 call plug#end()
@@ -132,7 +129,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
+if has("nvim-0.5.0") || has("patch-8.1.1564")
     " Recently vim can merge signcolumn and number column into one
     set signcolumn=number
 else
@@ -143,19 +140,27 @@ endif
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-" inoremap <silent><expr> <TAB>
-"             \ pumvisible() ? "\<C-n>" :
-"             \ <SID>check_back_space() ? "\<TAB>" :
-"             \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-    let col=col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use <Tab> and <S-Tab> to navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -169,11 +174,6 @@ if exists('*complete_info')
 else
     inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <C-space> coc#refresh()
-"Some terminals may send <NUL> when you press <c-space>, so you could instead:
-" inoremap <silent><expr> <NUL> coc#refresh()
 
 " Close completition window when completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -335,25 +335,25 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",     -- one of "all", "language", or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  refactor = {
-    highlight_definition = { enable = true },
-    navigation = { enable = true },
-  },
-  textobjects = { enable = true },
-}
+ensure_installed = "all",     -- one of "all", "language", or a list of languages
+highlight = {
+enable = true,              -- false will disable the whole extension
+},
+   incremental_selection = {
+   enable = true,
+   keymaps = {
+       init_selection = "gnn",
+       node_incremental = "grn",
+       scope_incremental = "grc",
+       node_decremental = "grm",
+       },
+   },
+   refactor = {
+       highlight_definition = { enable = true },
+       navigation = { enable = true },
+       },
+   textobjects = { enable = true },
+   }
 EOF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -798,7 +798,7 @@ let g:airline_powerline_fonts=1
 let g:airline_detect_modified=1
 
 " Enable paste detection
-let g:airline_detect_paste=0
+let g:airline_detect_paste=1
 
 " Enable crypt detection
 let g:airline_detect_crypt=1
