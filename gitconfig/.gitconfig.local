@@ -1,6 +1,19 @@
 [core]
     pager = delta --plus-color="#012800" --minus-color="#340001" --theme='gruvbox'
+
 [interactive]
     diffFilter = delta --color-only
+
+[delta]
+    side-by-side = true
+    linenumbers = true
+    features = decorations
+
 [advice]
     addIgnoredFile = false
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = yellow box
