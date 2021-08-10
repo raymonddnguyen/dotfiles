@@ -110,6 +110,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }         "Need NodeJS and Yarn
 Plug 'honza/vim-snippets'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'liuchengxu/vista.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -295,8 +296,6 @@ nnoremap <leader>fb :Buffers<cr>
 nnoremap <leader>fl :Lines<cr>
 " Lines in the current buffer
 nnoremap <leader>fB :BLines<cr>
-" Tags in the project
-nnoremap <leader>ft :Tags<cr>
 " v:oldfiles and open buffers
 nnoremap <leader>fh :History<cr>
 " Help tags
@@ -440,6 +439,44 @@ imap <BS> <Plug>(PearTreeBackspace)
 
 " Move cursor past closing string
 imap <C-j> <Plug>(PearTreeJump)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vista.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" How each level is indented and what to prepend.
+" This could make the display more compact or more spacious.
+" e.g., more compact: ["▸ ", ""]
+" Note: this option only works for the kind renderer, not the tree renderer.
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+" Executive used when opening vista sidebar without specifying it.
+" See all the avaliable executives via `:echo g:vista#executives`.
+let g:vista_default_executive = 'ctags'
+
+" Set the executive for some filetypes explicitly. Use the explicit executive
+" instead of the default one for these filetypes when using `:Vista` without
+" specifying the executive.
+let g:vista_executive_for = { 'cpp': 'coc', 'rs': 'coc', 'py': 'coc' }
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+let g:vista_fzf_preview = ['right:50%']
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = { "function": "\uf794", "variable": "\uf71b" }
+
+" Sidebar width
+let g:vista_sidebar_width = 50
+
+" Fzf tag finder map
+nnoremap  <leader>ft  :Vista finder coc<cr>
+
+" Opens tagbar on right side of screen
+nmap <leader>vv :Vista!!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Markdown Preview
@@ -821,6 +858,9 @@ let g:airline_detect_iminsert=0
 " Themes are automatically selected based on the matching colorscheme. this can be overridden by defining a value.
 " For powerline theme, need to manually add it to airline theme plugin folder
 let g:airline_theme='powerlineish'
+
+" Vista
+let g:airline#extensions#vista#enabled = 1
 
 " Enable/disable COC.nvim error/warning display
 " let g:airline#extensions#coc#enabled=0
