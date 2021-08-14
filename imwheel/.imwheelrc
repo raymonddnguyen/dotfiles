@@ -4,6 +4,11 @@
     None, Down, Button5, 10
 
 # Speed up scrolling for the document viewer
+"^kitty$"
+    None, Up, Button4, 10
+    None, Down, Button5, 10
+
+# Speed up scrolling for the document viewer
 "^zathura$"
     None, Up, Button4, 10
     None, Down, Button5, 10
