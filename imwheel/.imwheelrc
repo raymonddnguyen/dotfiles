@@ -1,3 +1,8 @@
+# Speed up scroll for brave
+"^brave-browser$"
+     None, Up, Button4, 10
+     None, Down, Button5, 10
+
 # Speed up scrolling for discord
 "^discord$"
     None, Up, Button4, 10
