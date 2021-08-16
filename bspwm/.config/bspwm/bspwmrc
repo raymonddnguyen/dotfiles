@@ -8,7 +8,7 @@ libinput-gestures-setup restart &                                           # th
 fc-cache &                                                                  # reload font cache for polybar
 xbindkeys &                                                                 # disable middle mouse button paste
 xset -b &                                                                   # disable errorbell
-imwheel &                                                                   # increase mouse scroll speed
+imwheel -b 45 &                                                             # increase mouse scroll speed with keeping thumb buttons functional
 
 # udevadm monitor
 thunderbolt_dir=/sys/devices/pci0000:00/0000:00:1d.4/0000:03:00.0/0000:04:00.0/0000:05:00.0/domain0/0-0/0-1
