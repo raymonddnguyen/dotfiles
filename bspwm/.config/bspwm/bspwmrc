@@ -80,5 +80,8 @@ eval "set -- $(sed 1d "$HOME/.fehbg")" &
 wal -qn -i $4 --backend $random_backend &
 
 dunst &                                                                     # notifications
-wal -i $random_image &                                                   # set wallpaper and colorscheme
+wal -i $random_image &                                                      # set wallpaper and colorscheme
 $HOME/.config/polybar/themes/blocks/launch.sh &                             # start polybar
+
+printf 'Xcursor.size: 16' >> ~/.Xresources
+xrdb ~/.Xresources
